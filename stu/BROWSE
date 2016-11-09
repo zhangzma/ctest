@@ -1,0 +1,27 @@
+[ebrowse-hs "ebrowse 5.0" " -x" () ()][ebrowse-ts [ebrowse-cs "CPerson" () 0"person.h" "class CPerson
+{" 69() ]
+()([ebrowse-ms "_addr" () 0 () "    std::string _addr;" 172 2  () () 0]
+[ebrowse-ms "_name" () 0 () "    std::string _name;" 149 2  () () 0]
+[ebrowse-ms "_phone" () 0 () "    std::string _phone;" 196 2  () () 0]
+)
+([ebrowse-ms "CPerson" () 0 () "    CPerson();" 91 0  () () 0]
+[ebrowse-ms "~CPerson" () 1 () "    virtual ~CPerson()" 115 0  () () 0]
+)
+()
+()
+()
+()
+()()
+][ebrowse-ts [ebrowse-cs "*Globals*" () 0() () 0"person.h" ]
+()([ebrowse-ms "std" () 0 () () 0 0  "main.cpp" "using namespace std;" 53]
+)
+([ebrowse-ms "main" () 0 "main.cpp" "int main(int" 67 0  "main.cpp" "int main(int" 67]
+)
+()
+()
+([ebrowse-ms "_PERSON_H_" () 512 () () 0 0  () "#define _PERSON_H_
+" 51]
+)
+()
+()()
+]

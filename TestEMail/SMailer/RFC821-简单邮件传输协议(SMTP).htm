@@ -1,0 +1,277 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>RFC821-简单邮件传输协议(SMTP) 中文版_立华软件园_技术文档->其他文档</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gbk">
+<link rel=stylesheet href="http://www.lihuasoft.net/css/index.css">
+<META NAME="Author" CONTENT="李立华，立华软件园">
+<META name="Create-time" content="2008-01-26 12:05:46">
+<META NAME="Keywords" CONTENT="立华软件园,VB,Visual Basic,Java,J++,script,VBS,VC,Visual C++,Delphi,Visual Studio,Dotnet,VB.Net,C#,Csharp,PB,PowerBuilder,SQL server,Orcale,MySQL,ASP,PHP,JSP,XML,RSS,CSS,滤镜,网页设计,程序设计,软件开发,软件下载,黑客,安全,黑客攻防录像,系统补丁,源代码,原代码,代码,软件,UML,技术文档,下载,网络安全，黑客,电子图书,源代码,编程工具,电话记事本,MCI播放器,网吧记费器">
+<META NAME="Description" CONTENT="立华软件园,VB,VC,Delphi,VB.Net,C#,PB,技术文档,网络安全，黑客,下载,电子图书,源代码,编程工具,电话记事本,MCI播放器,网吧记费器。">
+</head>
+
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" align="center" >
+<center>
+<table border="0" cellspacing="0" cellpadding="0" style="border-collapse: collapse" width="780">
+<tr><td>
+<table border="0" cellspacing="0" cellpadding="0" style="border-collapse: collapse" width="100%">
+<tr height=33><td bgcolor="#EAEAEA">
+	<table border="0" cellspacing="0" cellpadding="0" style="border-collapse: collapse" width="100%">
+	<form method=post action="http://bbs.lihuasoft.net/logging.php?action=login" name="login">
+			
+
+
+		<tr height="33">
+		<td width="490" background="http://www.lihuasoft.net/images/bg_top_left.gif" nowrap>&nbsp;<font style="font-size:11pt" color="#0000FF">登录社区：</font><INPUT type=hidden value=eb595b8d name=formhash><INPUT type=hidden value=index.php name=referer><INPUT type=hidden value=normal name=loginmode><INPUT type=hidden value=1 name=styleid><INPUT type=hidden value=0 name=cookietime><INPUT type=hidden value=username name=loginfield><INPUT type=hidden value=0 name=questionid>用户名:<INPUT maxLength=40 style="width:60;height:18" name=username>
+          密码:<INPUT type=password name=password style="width:50;height:18">
+          <INPUT type=submit value=登陆 name=loginsubmit style="color: #0A61AC; border: 1px solid #9C9B9C; padding: 1; background-color: #E8E8E8;height:14pt;width:40;cursor:hand;">
+		<input type=button value="注册" style="color: #0A61AC; border: 1px solid #9C9B9C; padding: 1; background-color: #E8E8E8;height:14pt;width:40;cursor:hand;" onclick="window.open('http://bbs.lihuasoft.net/register.php','')">  <a href="http://bbs.lihuasoft.net/member.php?action=lostpasswd" target=_blank>忘记密码</a>
+		</td><td background="http://www.lihuasoft.net/images/bg_top_right.gif" align="right" nowrap>
+		网页功能：<a href="" onclick="window.external.addFavorite('http://www.lihuasoft.net','立华软件园');return false;" class=list1>加入收藏</a> 
+<a href="" href="javascript:DoHelp();" onclick="setHomePage('http://www.lihuasoft.net/'); return false;" style="behavior:url(#default#homepage);" class=list1>设为首页</a> 
+<a href="/search.php" class=list1>网站搜索</a>&nbsp;&nbsp;
+		</td>
+		</tr>
+	</form>
+	</table>
+</td></tr>
+</table>
+<table border="0" cellspacing="0" cellpadding="0" style="border-collapse: collapse" width="100%" bgcolor="#FFFFFF">
+<tr align="center">
+<td width=200 align=left>
+<a href="http://www.lihuasoft.net"><img src="http://www.lihuasoft.net/images/logo.gif" border=0 width=200 height=80></a>
+</td>
+<td width=3><img src="http://www.lihuasoft.net/images/img_vline.gif" border=0 alt="" width=3></td>
+
+<td align=center style='line-height: 150%; margin: 8'>
+	<a href="http://www.lihuasoft.net/article"><img src="http://www.lihuasoft.net/images/ico_dev.gif" border=0 width=46 height=47 ><br>文档</a>
+</td>
+<td width=3><img src="http://www.lihuasoft.net/images/img_vline.gif" border=0 alt="" width=3></td>
+<td align=center style='line-height: 150%; margin: 8'>
+	<a href="http://www.lihuasoft.net/download"><img src="http://www.lihuasoft.net/images/ico_down.gif" border=0 width=46 height=47 ><br>下载</a>
+</td>
+<td width=3><img src="http://www.lihuasoft.net/images/img_vline.gif" border=0 alt="" width=3></td>
+<td align=center style='line-height: 150%; margin: 8'>
+	<a href="http://www.lihuasoft.net/book"><img src="http://www.lihuasoft.net/images/ico_book.gif" border=0 width=46 height=47 ><br>图书</a>
+</td>
+<td width=3><img src="http://www.lihuasoft.net/images/img_vline.gif" border=0 alt="" width=3></td>
+<td align=center width=69 style='line-height: 150%; margin: 8'>
+	<a href="http://www.lihuasoft.net/bbs"><img src="http://www.lihuasoft.net/images/ico_bbs.gif" border=0 width=46 height=47 ><br>论坛</a>
+</td>
+<td width=3><img src="http://www.lihuasoft.net/images/img_vline.gif" border=0 alt="" width=3></td>
+<td align=center style='line-height: 150%; margin: 8'>
+	<a href="http://www.lihuasoft.net/safe"><img src="http://www.lihuasoft.net/images/ico_sofe.gif" border=0 width=46 height=47 ><br>安全</a>
+</td>
+
+<td width=3><img src="http://www.lihuasoft.net/images/img_vline.gif" border=0 alt="" width=3></td>
+<td align=center style='line-height: 150%; margin: 8'>
+	<a href="http://www.lihuasoft.net/source"><img src="http://www.lihuasoft.net/images/ico_source.gif" border=0 width=46 height=47 ><br>源码</a>
+</td>
+<td width=3><img src="/images/img_vline.gif" border=0 alt="" width=3></td>
+<td align=center style='line-height: 150%; margin: 8'>
+	<a href="http://www.lihuasoft.net/hardware"><img src="http://www.lihuasoft.net/images/ico_hardware.gif" border=0 width=46 height=47 ><br>硬件</a>
+</td>
+<td width=3><img src="http://www.lihuasoft.net/images/img_vline.gif" border=0 alt="" width=3></td>
+<td align=center style='line-height: 150%; margin: 8'>
+	<a href="http://game.lihuasoft.net/"><img src="http://www.lihuasoft.net/images/ico_music.gif" border=0 width=46 height=47 ><br>游戏</a>
+</td>
+
+</tr>
+</table>
+<table border="0" cellspacing="0" cellpadding="0" style="border-collapse: collapse" width="100%">
+	<tr height=1 bgcolor="#405793"><td></td></tr>
+	<tr bgcolor="#698CC3" height=18><td style="color:#DDDDDD;text-align: center" nowrap>
+		<a href="http://www.lihuasoft.net/" class=list2>首页</a>		<a href="http://www.lihuasoft.net/news" class=list2>信息</a>		<a href="http://my.lihuasoft.net/" class=list2>空间</a>		<a href="http://vb.lihuasoft.net/" class=list2>VB</a>		<a href="http://www.lihuasoft.net/subject/vc.php" class=list2>VC</a>		<a href="http://www.lihuasoft.net/subject/delphi.php" class=list2>Delphi</a>		<a href="http://www.lihuasoft.net/subject/java.php" class=list2>Java</a>		<a href="http://flash.lihuasoft.net/" class=list2>Flash</a>		<a href="http://www.lihuasoft.net/download/list.php?frmid=4" class=list2>补丁</a>		<a href="http://www.lihuasoft.net/download/list.php?frmid=42" class=list2>控件</a>		<a href="http://www.lihuasoft.net/safe" class=list2>安全</a>		<a href="http://www.lihuasoft.net/safe/list.php?frmid=34" class=list2>黑客</a>		<a href="http://www.lihuasoft.net/download/?frmid=3" class=list2>电子书</a>		<a href="http://hardware.lihuasoft.com/notebook/" class=list2>笔记本</a>		<a href="http://hardware.lihuasoft.com/mobile/" class=list2>手机</a>		<a href="http://hardware.lihuasoft.com/audio/" class=list2>MP3</a>		<a href="http://www.lihuasoft.net/virus" class=list2>杀毒</a>		<a href="http://www.lihuasoft.net/subject/qqgroup.php" class=list2>QQ群</a>		<a href="http://www.lihuasoft.net/pub" class=list2>产品库</a>		<a href="http://hy.lihuasoft.net/" class=list2>分类信息</a>		<a href="http://www.lihuasoft.net/dir/"class=list2>编程网站</a> 
+		<a href="http://www.lihuasoft.net/subject/rss.htm"><img src="http://www.lihuasoft.net/images/xml.gif" border=0 width=36 height=14 align="absbottom" title="RSS订阅"></a>
+	</td></tr>
+	<tr height=1 bgcolor="#405793"><td></td></tr>
+</table>
+		<table border="0" cellspacing="0" cellpadding="0" style="border-collapse: collapse" height=30 background="http://www.lihuasoft.net/images/bg_menu_1.gif" width="100%">
+	<form method=get action="http://www.lihuasoft.net/search.php">
+	<tr><td align=right width=80><img src="http://www.lihuasoft.net/images/ico_search_1.gif" border=0 alt=""></td>
+	<td width=70>&nbsp;内容搜索</td><td><input type=text name=q size=50></td>
+	<td width=350><input type=radio checked name="stype" value="0">网页 <input type=radio name="stype" value=1>下载 <input type=radio name="stype" value=2>源代码
+				<input type=submit title="搜索" value="搜 索" style="color: #0A61AC; border: 1px solid #9C9B9C; padding: 1; background-color: #E8E8E8;height:16pt;width:50;cursor:hand;"></td>
+	</tr>
+	</form>
+	</table>
+	</td></tr>
+</table>
+	<table border="0" cellspacing="0" cellpadding="0" style="border-collapse: collapse" align=center width="780">
+	<tr height=160><td width=200  style="border: 1px solid #C8CBE8; padding: 1" valign=top>
+		<table border="0" cellspacing="0" cellpadding="0" style="border-collapse: collapse" width="100%">
+		<tr height=20><td width=100 align=center bgcolor="#C8CBE8" style="border: 1px solid #5076AF; padding: 1">热点文章</td><td width=100></td></tr>
+		<tr><td colspan=2 height=1 bgcolor="#5076AF"></td></tr>
+		 <tr height=20><td colspan=2>&nbsp;<img src=../images/dot1.gif width=4 height=4> <a href='show.php?id=481' title='MODEM AT指令集 [2003-08-11]'>MODEM AT指令集</a></td></tr> <tr height=20><td colspan=2>&nbsp;<img src=../images/dot1.gif width=4 height=4> <a href='show.php?id=461' title='Installshield6.22安装脚本文件样例 [2003-07-29]'>Installshield6.22安装脚本文..</a></td></tr> <tr height=20><td colspan=2>&nbsp;<img src=../images/dot1.gif width=4 height=4> <a href='show.php?id=463' title='用InstallShield制作专业Windows安装软件 [2003-07-29]'>用InstallShield制作专业Win..</a></td></tr> <tr height=20><td colspan=2>&nbsp;<img src=../images/dot1.gif width=4 height=4> <a href='show.php?id=909' title='贝叶斯过滤算法的基本步骤 [2004-07-04]'>贝叶斯过滤算法的基本步骤</a></td></tr> <tr height=20><td colspan=2>&nbsp;<img src=../images/dot1.gif width=4 height=4> <a href='show.php?id=2342' title='Window 窗口层次关系 [2004-10-25]'>Window 窗口层次关系</a></td></tr> <tr height=20><td colspan=2>&nbsp;<img src=../images/dot1.gif width=4 height=4> <a href='show.php?id=604' title='用InstallShield制作专业Windows安装软件 [2003-09-29]'>用InstallShield制作专业Win..</a></td></tr> <tr height=20><td colspan=2>&nbsp;<img src=../images/dot1.gif width=4 height=4> <a href='show.php?id=465' title='Installshield内部库函数(2) [2003-07-29]'>Installshield内部库函数(2)</a></td></tr> <tr height=20><td colspan=2>&nbsp;<img src=../images/dot1.gif width=4 height=4> <a href='show.php?id=464' title='Installshield内部库函数(1) [2003-07-29]'>Installshield内部库函数(1)</a></td></tr> <tr height=20><td colspan=2>&nbsp;<img src=../images/dot1.gif width=4 height=4> <a href='show.php?id=466' title='Installshield内部库函数(3) [2003-07-29]'>Installshield内部库函数(3)</a></td></tr> <tr height=20><td colspan=2>&nbsp;<img src=../images/dot1.gif width=4 height=4> <a href='show.php?id=907' title='TCP/IP协议基础 [2004-07-04]'>TCP/IP协议基础</a></td></tr> <tr height=20><td colspan=2>&nbsp;<img src=../images/dot1.gif width=4 height=4> <a href='show.php?id=462' title='InstallShield应用中SetupRegistry()完整脚本 [2003-07-29]'>InstallShield应用中SetupRe..</a></td></tr> <tr height=20><td colspan=2>&nbsp;<img src=../images/dot1.gif width=4 height=4> <a href='show.php?id=911' title='RFC821-简单邮件传输协议(SMTP) 中文版 [2004-07-04]'>RFC821-简单邮件传输协议(SM..</a></td></tr>		<tr><td colspan=2 height=1 bgcolor="#5076AF"></td></tr>
+		</table>		
+		<table border="0" cellspacing="0" cellpadding="0" style="border-collapse: collapse" width="100%">
+		<tr height=20><td width=100 align=center bgcolor="#C8CBE8" style="border: 1px solid #5076AF; padding: 1">本站原创</td><td width=100></td></tr>
+		<tr><td colspan=2 height=1 bgcolor="#5076AF"></td></tr>
+				<tr><td colspan=2 height=1 bgcolor="#5076AF"></td></tr>
+		</table>
+		<center>
+		<br /><br /><center>
+<script type="text/javascript"> 
+var arrBaiduCproConfig=new Array(); 
+arrBaiduCproConfig['uid'] =64248;
+arrBaiduCproConfig['n'] ='lihuasoftcpr';
+arrBaiduCproConfig['tm'] =26;
+arrBaiduCproConfig['cm'] =64;
+arrBaiduCproConfig['um'] =14;
+arrBaiduCproConfig['w'] =120;
+arrBaiduCproConfig['h'] =240;
+arrBaiduCproConfig['wn'] =1;
+arrBaiduCproConfig['hn'] =2;
+arrBaiduCproConfig['ta'] ='left';
+arrBaiduCproConfig['tl'] ='top';
+arrBaiduCproConfig['bu'] =1;
+arrBaiduCproConfig['bd'] ='#A9A9A9';
+arrBaiduCproConfig['bg'] ='#ffffff';
+arrBaiduCproConfig['tt'] ='#0E5700';
+arrBaiduCproConfig['ct'] ='#000000';
+arrBaiduCproConfig['url'] ='#666666';
+arrBaiduCproConfig['bdl'] ='#ffffff';
+arrBaiduCproConfig['rad'] =0;
+</script> 
+<script type="text/javascript" src="http://cpro.baidu.com/cpro/ui/ui.js" > 
+</script> 
+<script type="text/javascript"> 
+<!-- 
+document.write(baiduCproIFrame()); 
+--> 
+</script><br /><br />
+</center>		</center>
+	</td>
+	<td width=580 valign=top align=right>
+	<!-- 右边显示新闻 -->
+	<table border="0" cellspacing="1" cellpadding="0" style="border-collapse: collapse;word-wrap:break-word;" width="580">
+	<tr><td height=20>
+		<font color="#0000FF">您现在的位置：</font><a href="/" class=list1>立华软件园</a>-><a href="list.php?frmid=2" class=list1>技术文档</a>-><a href="list.php?frmid=19" class=list1>其他文档</a>	</td></tr>
+	<tr><td bgcolor=#000000 height=1></td></tr>
+	<tr><td height=2></td></tr>
+	<tr><td	height=56 background="../images/bg_newstitle.gif">
+		<!-- 新闻标题 -->
+		<table border="0" cellspacing="0" cellpadding="0" style="border-collapse: collapse" width="100%">
+			<tr height=30><td colspan=3 align=center width=580>
+				<font style="font-size:16pt" color="#0055FF"><b>RFC821-简单邮件传输协议(SMTP) 中文版</b></font>
+			</td></tr>
+			<tr height=20><td width=160></td><td width=200 align=center>发表日期：2004-07-04</td><td width=220 align=right>作者：[转贴] 出处：&nbsp;&nbsp;</td></tr>
+		</table>
+	</td></tr>
+	<tr><td width=580  style='line-height: 150%; margin: 8'>
+	<p style='line-height: 150%; margin: 8'>
+	<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse; float: right">
+<tr>
+<td >
+<a href="http://www.lihuasoft.net/bbs/viewthread.php?tid=4898" target="_blank"><img src="http://www.lihuasoft.net/adsimages/ms02.gif" border=0 alt=""></a>
+</td></tr></table>1. 介绍 <BR><BR>　　简单邮件传输协议（SMTP）的目标是可靠高效地传送邮件，它独立于传 <BR>送子系统而且仅要求一条可以保证传送数据单元顺序的通道。附录A，B，C <BR>和D描述了不同传送服务下SMTP的使用。在名词表中还定义了本文档中使用 <BR>的术语。 <BR>　　SMTP的一个重要特点是它能够在传送中接力传送邮件，传送服务提供了 <BR>进程间通信环境（IPCE），此环境可以包括一个网络，几个网络或一个网络 <BR>的子网。理解到传送系统（或IPCE）不是一对一的是很重要的。进程可能直 <BR>接和其它进程通过已知的IPCE通信。邮件是一个应用程序或进程间通信。邮 <BR>件可以通过连接在不同IPCE上的进程跨网络进行邮件传送。更特别的是，邮 <BR>件可以通过不同网络上的主机接力式传送。 <BR><BR>2. SMTP模型 <BR><BR>　　SMTP设计基于以下通信模型：针对用户的邮件请求，发送SMTP建立与接 <BR>收SMTP之间建立一个双向传送通道。接收SMTP可以是最终接收者也可以是中 <BR>间传送者。SMTP命令由发送SMTP发出，由接收SMTP接收，而应答则反方面传 <BR>送。 <BR>　　一旦传送通道建立，SMTP发送者发送MAIL命令指明邮件发送者。如果 <BR>SMTP接收者可以接收邮件则返回OK应答。SMTP发送者再发出RCPT命令确认邮件 <BR>是否接收到。如果SMTP接收者接收，则返回OK应答；如果不能接收到，则发出 <BR>拒绝接收应答（但不中止整个邮件操作），双方将如此重复多次。当接收者收 <BR>到全部邮件后会接收到特别的序列，如果接收者成功处理了邮件，则返回OK应 <BR>答。 <BR><BR><BR><BR>　　SMTP提供传送邮件的机制，如果接收方与发送方连接在同一个传送服务下 <BR>时，邮件可以直接由发送方主机传送到接收方主机；或者，当两者不在同一个 <BR>传送服务下时，通过中继SMTP服务器传送。为了能够对SMTP服务器提供中继能 <BR>力，它必须拥有最终目的主机地址和邮箱名称。 <BR>　　MAIL命令参数是回复路径，它指定邮件从何处来；而RCPT命令的参数是转 <BR>发路径的，它指定邮件向何处去。向前路径是源路径，而回复路径是返回路径 <BR>（它用于发生错误时返回邮件）。 <BR>　　当同一个消息要发往不同的接收者时，SMTP遇到了向不同接收者发送同一 <BR>份数据的复制品的问题，邮件命令和应答有一个比较奇怪的语法，应答也有一 <BR>个数字代码。在下面，例子中可以看到哪些使用实际的命令和应答。完整的命 <BR>令和应答在第四节。 <BR>　　命令与应答对大小写不敏感，也就是说，命令和应答可以是大写，小写或 <BR>两者的混合，但这一点对用户邮件名称却不一定是对的，因为有的主机对用户 <BR>名大小写是敏感的。这样SMTP实现中就将用户邮箱名称保留成初始时的样子， <BR>主机名称对大小写不敏感。 <BR>　　命令与应答由ASCII字母表组成，当传送服务提供8位字节传送通道，每7 <BR>位字符正确传送，而最高位被填充为0。当指定一般的命令或应答格式后，参 <BR>数会由一些类似于语言的字符串表示出来，如"&lt;string&gt;"或"&lt;reverse-path&gt;"， <BR>这里尖括号表示这是一种类似于语言的变量。 <BR><BR>3. SMTP过程 <BR><BR>　　本节提供了SMTP中的一些过程。头一个说明的是基本发送过程（定义为 <BR>发送操作）。下来描述向前传送邮件，确认邮箱名称和扩展邮件列表，发送到终 <BR>端和打开关闭交换。在本节的最后是对中断，邮件域的说明。本节的例子只是一 <BR>部分命令和应答的序列，完整的例子见附录F。 <BR><BR>3.1. MAIL <BR>　　在SMTP发送操作中有三步，操作由MAIL命令开始给出发送者标识。一系列或 <BR>更多的RCPT命令紧跟其后，给出了接收者信息，然后是DATA命令列出发送的邮件 <BR>内容，最后邮件内容指示符确认操作。 <BR><BR>　　过程中的第一步是MAIL命令，&lt; reverse-path &gt;包括源邮箱。 <BR><BR>　　MAIL &lt;SP&gt; FROM:&lt;reverse-path&gt; &lt;CRLF&gt; <BR><BR>　　此命令告诉接收者新的发送操作已经开始，请复位所有状态表和缓冲区。 <BR>它给出反向路径以进行错误信息返回。如果请求被接收，接收方返回一个 <BR>250 OK应答。&lt;reverse-path&gt;中不止包括了邮箱，它包括了主机和源邮箱的反 <BR>向路由，其中的第一个主机就是发送此命令的主机。 <BR><BR>　　过程中的第二步是发送RCPT命令。 <BR><BR>　　RCPT &lt;SP&gt; TO:&lt;forward-path&gt; &lt;CRLF&gt; <BR><BR>　　此命令给出向前路径标识接收者，如果命令被接收，接收方返回一个 <BR>250 OK应答，并存储向前路径。如果接收者未知，接收方会返回一个550 Failure <BR>应答。此过程可能会重复若干次。 <BR>　　&lt;forward-path&gt;不仅包括邮件，它是主机和目的邮箱的路由表，在其中的 <BR>第一个主机就是接收命令的主机。 过程中的第三步是发送DATA命令。 <BR><BR>DATA &lt;CRLF&gt; <BR><BR>　　如果命令被接收，接收方返回一个354 Intermediate应答，并认定以下的 <BR>各行都是信件内容。当信件结尾收到并存储后，接收者发送一个250 OK应答。 <BR>因为邮件是在传送通道上发送，因此必须指明邮件内容结尾，以便应答对话可 <BR>以重新开始。SMTP通过在最后一行仅发送一个句号来表示邮件内容的结束，在 <BR>接收方，一个对用户透明的过程将此符号过滤掉，以不影响正常的数据。 <BR>　　注意：邮件内容包括如下提示：Date, Subject, To, Cc, From。 <BR><BR>　　邮件内容指示符确认邮件操作并告知接收者可以存储和再发送数据了。如 <BR>果此命令被接收，接收方返回一个250 OK应答。DATA命令仅在邮件操作未完成 <BR>或源无效的情况下失败。 <BR><BR>　　上面所述的过程是一个发送操作。这些命令只能以上面的顺序使用。下例 <BR>表示了在一个发送操作中这些命令的使用。 <BR>　　SMTP过程例子 此例是在Alpha.ARPA主机的Smith发送邮件给Beta.ARPA主机 <BR>的Jones，Green和Brown的，这里假定主机Alpha与主机Beta直接相连。 <BR><BR>S: MAIL FROM:&lt;<A href="mailto:Smith@Alpha.ARPA"><FONT color=#000000>Smith@Alpha.ARPA</FONT></A>&gt; <BR>　　R: 250 OK <BR>　　S: RCPT TO:&lt;<A href="mailto:Jones@Beta.ARPA"><FONT color=#000000>Jones@Beta.ARPA</FONT></A>&gt; <BR>　　R: 250 OK <BR>　　S: RCPT TO:&lt;<A href="mailto:Green@Beta.ARPA"><FONT color=#000000>Green@Beta.ARPA</FONT></A>&gt; <BR>　　R: 550 No such user here <BR>　　S: RCPT TO:&lt;<A href="mailto:Brown@Beta.ARPA"><FONT color=#000000>Brown@Beta.ARPA</FONT></A>&gt; <BR>　　R: 250 OK <BR>　　S: DATA <BR>　　R: 354 Start mail input; end with &lt;CRLF&gt;.&lt;CRLF&gt; <BR>　　S: Blah blah blah... <BR>　　S: ...等等 <BR>　　S: &lt;CRLF&gt;.&lt;CRLF&gt; <BR>　　R: 250 OK <BR>　　此信被前两个人接收，而第三个人在此主机上没有邮箱。 <BR><BR>3.2. 转发 <BR>　　下面是一些&lt;forward-path&gt;中目的地址不正确的，但接收者知道正确的目 <BR>的地址的例子。在这些例子中，下列应答之一应该允许发送方与获得正确地址。 <BR><BR>　　251：用户不在本地；将向前发送到&lt;forward-path&gt;。 <BR><BR>　　这个应答意味着，接收方SMTP知道用户的邮箱在另外的主机上，而且意味 <BR>着将在未来使用正确的转向路径。请注意，主机或者用户，或者它们两者是不 <BR>同的。接收方负责传送消息。 <BR><BR>　　551 ：用户非本地，请尝试&lt;forward-path&gt; <BR><BR>　　这个应答意味着接收SMTP知道用户的邮箱在另外的主机上，并意味着使用 <BR>了正确的转发路径。注意请注意，主机或者用户，或者它们两者是不同的。接 <BR>收方拒绝接收此用户的信件，发送者必须根据提供的信息重新发送或者向原发 <BR>送者返回错误信息。 下例显示了这些响应的应用。 <BR><BR>　　转发的例子 <BR>　　S: RCPT TO:&lt;<A href="mailto:Postel@USC-ISI.ARPA"><FONT color=#000000>Postel@USC-ISI.ARPA</FONT></A>&gt; <BR>　　R: 251 User not local; will forward to &lt;<A href="mailto:Postel@USC-ISIF.ARPA"><FONT color=#000000>Postel@USC-ISIF.ARPA</FONT></A>&gt; <BR>　　或者 <BR>　　S: RCPT TO:&lt;<A href="mailto:Paul@USC-ISIB.ARPA"><FONT color=#000000>Paul@USC-ISIB.ARPA</FONT></A>&gt; <BR>　　R: 551 User not local; please try &lt;<A href="mailto:Mockapetris@USC-ISIF.ARPA"><FONT color=#000000>Mockapetris@USC-ISIF.ARPA</FONT></A>&gt; <BR><BR>3.3. 确认和扩展 <BR>　　SMTP提供了另外的确认用户名和扩展邮件列表的功能。这些功能由VREF和 <BR>EXPN命令完成，它们都以字符串为参数。对于VREF命令，字符串参数指的是用 <BR>户名，对此命令的响应要包括用户的命名和用户的邮箱。对于EXPN命令，字符 <BR>串参数指的是邮件列表，对此命令的响应多于一个，它们要包括所有列表中用 <BR>户的命名和他们的邮箱。 <BR>　　“用户名”是一个多余的项目，它是故意被加上的。如果主机采用VREF命 <BR>令和EXPN命令，最后本地邮箱必须提供用户名使它被主机确认。如果主机选择 <BR>由另外的字符串作为用户名，也是允许的。 <BR>　　在一些主机中，邮箱列表和一个邮箱的代名有一点不清楚，因为一般的数 <BR>据结构可能包括两种类型的入口。如果要发出对邮件列表的确认，应该给出确 <BR>定响应。在接收到这个消息后，主机将把邮件传送到列表上所有的地址上去， <BR>如果没有接收到确定响应，就会报告错误。例如， <BR>"550 That is a mail list, not a user name"。如果请求用于扩展一个用户名， <BR>可能通过返回包括一个名字的列表来形成确定响应，如果没有接收到确定响应， <BR>就会报告错误。（例如， "550 That is a user name, not a mailing list"）。 <BR>　　在多个响应的情况下（通常是对于EXPN而言的），每个应答指定一个邮箱。 <BR>在模糊请求的情况下，例如"VRFY Smith"，这里两个Smith的响应必须是 <BR>"553 User ambiguous"。 <BR><BR>　　确认用户名的情况如下例所示：例3： <BR>　　确认用户名 <BR>　　S: VRFY Smith R: 250 Fred Smith &lt;<A href="mailto:Smith@USC-ISIF.ARPA"><FONT color=#000000>Smith@USC-ISIF.ARPA</FONT></A>&gt; <BR>　　或者 <BR>　　S: VRFY Smith <BR>　　R: 251 User not local; will forward to &lt;<A href="mailto:Smith@USC-ISIQ.ARPA"><FONT color=#000000>Smith@USC-ISIQ.ARPA</FONT></A>&gt; <BR>　　或者 <BR>　　S: VRFY Jones <BR>　　R: 550 String does not match anything. <BR>　　或者 <BR>　　S: VRFY Jones <BR>　　R: 551 User not local; please try &lt;<A href="mailto:Jones@USC-ISIQ.ARPA"><FONT color=#000000>Jones@USC-ISIQ.ARPA</FONT></A>&gt; <BR>　　或者 <BR>　　S: VRFY Gourzenkyinplatz <BR>　　R: 553 User ambiguous. <BR><BR>　　邮箱列表要求多个响应的情况如下例所示： <BR>　　S: EXPN Example-People <BR>　　R: 250-Jon Postel &lt;<A href="mailto:Postel@USC-ISIF.ARPA"><FONT color=#000000>Postel@USC-ISIF.ARPA</FONT></A>&gt; <BR>　　R: 250-Fred Fonebone &lt;<A href="mailto:Fonebone@USC-ISIQ.ARPA"><FONT color=#000000>Fonebone@USC-ISIQ.ARPA</FONT></A>&gt; <BR>　　R: 250-Sam Q. Smith &lt;<A href="mailto:SQSmith@USC-ISIQ.ARPA"><FONT color=#000000>SQSmith@USC-ISIQ.ARPA</FONT></A>&gt; <BR>　　R: 250-Quincy Smith &lt;@USC-ISIF.ARPA:Q-Smith@ISI-VAXA.ARPA&gt; <BR>　　R: 250-&lt;<A href="mailto:joe@foo-unix.ARPA"><FONT color=#000000>joe@foo-unix.ARPA</FONT></A>&gt; <BR>　　R: 250 &lt;<A href="mailto:xyz@bar-unix.ARPA"><FONT color=#000000>xyz@bar-unix.ARPA</FONT></A>&gt; <BR>　　或者 <BR>　　S: EXPN Executive-Washroom-List <BR>　　R: 550 Access Denied to You. <BR><BR>　　VERF和EXPN命令的字符串命令参数因为具体实现的不同而不能再加以限 <BR>制了。在一些系统上，EXPN命令的参数可能是一个包含邮件列表的文件名， <BR>但是在Internet上有许多不同的文件结构。 <BR>　　VRFY和EXPN命令在最小实现中并不包括，当它们实现时，它们也不要求 <BR>被在传送间实现。　 <BR><BR>3.4. 发送信件(mailing)和获得信件(sending) <BR>　　SMTP的主要目的是将邮件发送到用户的邮箱中。由一些主机提供的类似 <BR>的功能是把邮件送至用户的终端（如果用户正打开终端）。将邮件送到用户 <BR>的邮箱中称为发送信件（mailing）；而送至用户终端则称之为获得信件 <BR>（sending）。因为在一些主机上，这两者的实现十分类似，所以它们同时 <BR>被放入了SMTP中。然而，获得信件命令在SMTP的最小实现中是没有的。用户 <BR>应该具有控制向终端上写信息的能力。大部分主机允许用户接受或者拒绝类 <BR>似的信息。 <BR>　　下面三个命令被定义来支持获得信件。它们被用于邮件命令而不是MAIL <BR>命令，指示接收SMTP这种操作的特殊意义： <BR>　　SEND &lt;SP&gt; FROM:&lt;reverse-path&gt; &lt;CRLF&gt; <BR><BR>　　SEND命令要求邮件内容直接传送到用户终端。如果用户未打开终端（或 <BR>者未接收终端信息），450响应将返回一个RCPT命令。如果信息被成功发送， <BR>此操作成功。　 <BR><BR>　　SOML &lt;SP&gt; FROM:&lt;reverse-path&gt; &lt;CRLF&gt;　 <BR><BR>　　Send或者MaiL命令要求将邮件内容直接发送到用户的终端上（如果用户 <BR>在终端上）。如果用户不在终端上，邮件内容直接进入邮箱。如果邮件被发送 <BR>到用户终端或者用户信箱，发送操作成功。　 <BR><BR>　　SAML &lt;SP&gt; FROM:&lt;reverse-path&gt; &lt;CRLF&gt; <BR><BR>　　Send和MaiL命令要求邮件内容直接发送到用户终端上（如果用户在终端上）。 <BR>不管怎么样，信件都会进入信箱。如果信件进入信箱，发送操作成功。 <BR>　　用于MAIL命令的响应和这些命令的响应相同。 　 <BR><BR>3.5. 打开和关闭 <BR>　　当打开传送通道时，要交换一些信息以确定双方的身份。以下的命令是 <BR>用于打开和关闭的： <BR>　　HELO &lt;SP&gt; &lt;domain&gt; &lt;CRLF&gt; <BR>　　QUIT &lt;CRLF&gt; <BR>　　在HELLO命令中，主机自己发送命令，此命令可以被解释为：“你好， <BR>我是XX”。 <BR><BR>　　打开联结的例子 <BR>　　R: 220 BBN-UNIX.ARPA Simple Mail Transfer Service Ready <BR>　　S: HELO USC-ISIF.ARPA <BR>　　R: 250 BBN-UNIX.ARPA <BR><BR>　　关闭联结的例子 <BR>　　S: QUIT <BR>　　R: 221 BBN-UNIX.ARPA Service closing transmission channel <BR><BR>3.6. 转发 <BR>　　转发路径可能是如下格式："@ONE,@TWO:JOE@THREE"，在这里，ONE，TWO <BR>和THREE是主机。这种格式用于强调地址和路径的区别。邮箱是绝对地址，路 <BR>径是关于如何到达的信息。这两个概念不应该被混淆。 <BR>　　概念上，转发路径的元素被移动到回复路径作为从一个SMTP服务器到另一 <BR>个SMTP服务器的信息。回复路径是一个反向数据源路径，例如从当前信息的位 <BR>置到发起者的位置。当一个SMTP服务器从转发路径中删除自己的标记并将它插 <BR>入到回复路径中时，它必须使用它发送环境能够理解的名称来进行，以防它的 <BR>名称在不同的环境中被理解为不同的名字。 <BR>　　如果当SMTP接收到信息的转发路径的第一个元素不是此SMTP的标记时，此 <BR>元素不从转发路径中删除，而被用来决定下一个应该发送到的SMTP服务器。在 <BR>任何情况下，SMTP都将自己的标记加入反向路径中。 <BR>　　使用源路径时，接收SMTP接收转发的邮件并发送到另一接收SMTP服务器上。 <BR>接收服务器可以接受或拒绝转发本地用户的邮件。接收SMTP通过将它自己的标记 <BR>从转发路径移至回复路径的开始处来改变命令参数。这时，接收SMTP变成了发 <BR>送SMTP，也就建立了到下一个转发路径中SMTP的通道，然后，它向这个SMTP发 <BR>送邮件。 <BR>　　在回复路径上的头一个主机应是发送SMTP命令的主机，在转发路径上第一个 <BR>主机应是接收SMTP命令的主机。 <BR>　　注意：转发路径和回复路径出现在SMTP命令和应答中，但不一定要出现在信 <BR>息中。也就是说，没有必须要这样的路径特别这种格式出现在信息头的"To:"， <BR>"From:"和"CC:"等域中。 <BR>　　　如果SMTP服务器接受了转发任务，但后来它发现因为转发路径不正确或者 <BR>其它原理无法发送邮件，它必须建立一"undeliverable mail"信号，将它此信号 <BR>送到此信的发主者那里。 <BR>　　此信号必须是从此主机的SMTP服务上发出的，当然了，此服务器不应该再报 <BR>告出错信息的错误。一种阻止这种出错报告循环的情况是在信号的邮件命令的回 <BR>复路径上置空。在传送此信息时，允许将回复路径也置为空。一个MAIL命令后的 <BR>回复路径为空表现为如下形式： <BR>　　MAIL FROM:&lt;&gt; <BR><BR>　　下例中显示了不可传送的邮件信息。此信息是对从HOSTW上的JOE发出的邮件 <BR>经过在HOSTX需要经过HOSTZ到达HOSTY时出错的回应。我们看到的例子是在HOSTX <BR>和HOSTY之间发生的。 <BR><BR>　　不可传送邮件信息的例子 <BR>　　S: MAIL FROM:&lt;&gt; <BR>　　R: 250 ok <BR>　　S: RCPT TO:&lt;@HOSTX.ARPA:JOE@HOSTW.ARPA&gt; <BR>　　R: 250 ok <BR>　　S: DATA <BR>　　R: 354 send the mail data, end with . <BR>　　S: Date: 23 Oct 81 11:22:33 <BR>　　S: From: <A href="mailto:SMTP@HOSTY.ARPA"><FONT color=#000000>SMTP@HOSTY.ARPA</FONT></A> <BR>　　S: To: <A href="mailto:JOE@HOSTW.ARPA"><FONT color=#000000>JOE@HOSTW.ARPA</FONT></A> <BR>　　S: Subject: Mail System Problem <BR>　　S: <BR>　　S: Sorry JOE, your message to <A href="mailto:SAM@HOSTZ.ARPA"><FONT color=#000000>SAM@HOSTZ.ARPA</FONT></A> lost. <BR>　　S: HOSTZ.ARPA said this: <BR>　　S: "550 No Such User" <BR>　　S: . <BR>　　R: 250 ok <BR><BR>3.7. 域 <BR>　　域是最近被引入ARPA Internet邮件系统的。使用域可以使地址空间从一 <BR>个平面的普通字符串主机名变成全局地址的一个层次结构。主机由一个域名取 <BR>代，起始主机是由一系列元串组成，它们由逗号按最特殊到一般的顺序排列。 <BR>　　例如，"USC-ISIF.ARPA"，"Fred.Cambridge.UK"和"PC7.LCS.MIT.ARPA"可 <BR>能是主机-域标识符。 <BR>　　无论域名在SMTP中如何使用，只有正式的名称才可以被使用，不可以使用 <BR>假名或昵称。 <BR><BR>3.8. 改变角色 <BR>　　TURN命令可以用来改变在传输信道上通信的程序的角色。如果程序A现在是 <BR>发送SMTP，它发送TURN命令并接到OK应答（250）后，它就变为接收SMTP了。同 <BR>理，程序B也可以从接收SMTP变为发送SMTP。若要拒绝改变角色，接收方可以发 <BR>送502作为应答。 <BR>　　注意：此命令是可选的。在使用TCP的传输信道时，一般不使用此命令。然 <BR>而，当建立传输信道的代价比较大时，此命令很有用。例如，此命令可以支持一 <BR>般公共交换电话系统作为传输信道。 <BR><BR>4. SMTP说明 <BR>4.1. SMTP命令 <BR>4.1.1. 命令语法 <BR>　　SMTP命令定义了邮件传输或由用户定义的系统功能。它的命令是由&lt;CRLF&gt; <BR>结束的字符串。而在带有参数的情况下，命令本身由&lt;SP&gt;和参数分开，如果 <BR>未带参数可以直接和&lt;CRLF&gt;连接。邮箱的语法格式必须和接收站点的格式一致。 <BR>下面讨论SMTP命令和应答。 <BR>　　发送邮件操作涉及到不同的数据对象，它们由不同的参数相互连接。回 <BR>复路径就是MAIL命令的参数，而转发路径则是RCPT命令的参数，邮件日期是 <BR>DATA命令的参数。这些参数或者数据对象必须跟在命令后。这种模式也就要 <BR>求有不同的缓冲区来存储这些对象，也就是说，有一个回复路径缓冲区，一 <BR>个转发路径缓冲区，一个邮件内容缓冲区。特定的命令产生自己的缓冲区， <BR>或使一个或多个缓冲的内容被清除。 <BR><BR>　　HELLO (HELO) <BR>　　此命令用于向接收SMTP确认发送SMTP。参数域包括发送SMTP的主机名。 <BR>接收SMTP通过连接确认命令来向发送SMTP确认接收SMTP。引命令和OK响应确 <BR>认发送和接收SMTP进入了初始状态，也就是说，没有操作正在执行，所有状态 <BR>表和缓冲区已经被子清除。 <BR><BR>　　MAIL (MAIL) <BR>　　此命令用于开始将邮件发送到一个多个邮箱中。参数域包括回复路径。 <BR>返回路径中包括了可选的主机和发送者邮箱列表。当有主机列表时，它是一 <BR>个回复路径源，它说明此邮箱是由在表中的主机一一传递发送（第一个主机 <BR>是最后一个接收到此邮件的主机）过来的。此表也有作向发送者返回非传递信 <BR>号的源路径。因为每个传递主机地址都被加在此表起始处，它就必须使用发送 <BR>IPCE而不是接收IPCE（如果它们不是一个IPCE的话）清楚的名称。一些出错信 <BR>息的回复路径可能就是空的。 <BR>　　此命令清除回复路径缓冲区，转发路径缓冲区和邮件内容缓冲区，并且将 <BR>此命令的回复路径信息插入到回复路径缓冲区中。 <BR>　　RECIPIENT (RCPT) <BR>　　此命令用于确定邮件内容的唯一接收者；多个接收者将由多个此命令指定。 <BR>转发路径中包括一个可选的主机和一个必须的目的邮箱。当出现主机列表时， <BR>这就是一个源路径，它指明邮件必须向列表中的上一个主机发送。如果接收 <BR>SMTP未实现邮件的传递发送，就会返回如未知本地用户（550）的信息给用户。 <BR>　　当邮件被传递发送时，传递主机必须将自己的名称由转发路径的开始处 <BR>移至回复路径的结束处。当邮件最终到达目的地时，接收SMTP将以它的主机邮 <BR>件格式自己的名称插入目标邮件中。例如，由传递主机A接收的带有如下参 <BR>数的邮件时， <BR>　　FROM:&lt;<A href="mailto:USERX@HOSTY.ARPA"><FONT color=#000000>USERX@HOSTY.ARPA</FONT></A>&gt; <BR>　　TO:&lt;@HOSTA.ARPA,@HOSTB.ARPA:USERC@HOSTD.ARPA&gt; <BR>　　将会变成如下形式： <BR>　　FROM:&lt;@HOSTA.ARPA:USERX@HOSTY.ARPA&gt; <BR>　　TO:&lt;@HOSTB.ARPA:USERC@HOSTD.ARPA&gt;. <BR>　　此命令导致它的转发路径参数加入转发路径缓冲区中。 <BR><BR>　　DATA (DATA) <BR>　　接收者将跟在命令后的行作为邮件内容。此命令导致此命令后的邮件内容 <BR>加入邮件内容缓冲区。邮件内容可以包括所有128个ASCII码字符。邮件内容由只 <BR>包括一个句号的行结束，也就是如下的字符序列："&lt;CRLF&gt;.&lt;CRLF&gt;"，它指示了 <BR>邮件的结束。 <BR>　　邮件内容的结束指示要求接收者现在就处理保存的邮件内容。此过程将回复 <BR>路径缓冲区，转发路径缓冲区和邮件内容缓冲区的内容全部清空。如果操作成功， <BR>接收者必须返回OK应答；如果失败也必须返回失败应答。 <BR>　　当接收SMTP收到一条信息时，无论是用作转发还是此邮件已经到达目的地， <BR>它都必须在邮件内容的开始处加上时间戳这一行，这一行指示了接收到邮件主 <BR>机和发出此邮件主机的标识，以及接收到邮件内容的时间和日期。转发的信件 <BR>将有多行这样的时间戳。当接收SMTP作最后一站的传送时，它将返回路径信息 <BR>行插入邮件中。此行包括了发送命令中的&lt;reverse-path&gt;的信息。在这里，最 <BR>后一站的传送的意思是邮件将被送到目的用户手中，但在一些情况下，邮件可 <BR>能需要更进一步的加工并由另外的邮件系统传送。 <BR>　　可能在返回路径中的邮箱与实际发送的邮件不一致，这个情况可能发生在 <BR>需要传送一个特定的错误处理信箱而不是信件发送者那里。上面所述说明了， <BR>最后的邮件内容由一个返回路径行，和在其后的一个或多个时间戳行构成。这 <BR>些行后面是邮件内容的头和体信息。 <BR>　　当处理后面的邮件数据指示部分成功时就需要特定的说明。这种情况可能 <BR>发生在发送SMTP发现当邮件需要传送给多个用户时，只能够成功地向其中的一 <BR>部分发送信息这种情况下。在这种情况下，必须对DATA命令发送OK应答，而接 <BR>收SMTP组织并发送一个"不可传递邮件"信息到信息的发送者。在此信息中或者 <BR>发送一个不成功接收者的列表，或者每次发送一个不成接收者，而发送多次。 <BR>所有不可传递邮件信息由MAIL命令发送。 <BR><BR>　　返回路径和接收时间戳例子 <BR>　　Return-Path: &lt;@GHI.ARPA,@DEF.ARPA,@ABC.ARPA:JOE@ABC.ARPA&gt; <BR>　　Received: from GHI.ARPA by JKL.ARPA ; 27 Oct 81 15:27:39 PST <BR>　　Received: from DEF.ARPA by GHI.ARPA ; 27 Oct 81 15:15:13 PST <BR>　　Received: from ABC.ARPA by DEF.ARPA ; 27 Oct 81 15:01:59 PST <BR>　　Date: 27 Oct 81 15:01:01 PST <BR>　　From: <A href="mailto:JOE@ABC.ARPA"><FONT color=#000000>JOE@ABC.ARPA</FONT></A> <BR>　　Subject: Improved Mailing System Installed <BR>　　To: <A href="mailto:SAM@JKL.ARPA"><FONT color=#000000>SAM@JKL.ARPA</FONT></A> <BR><BR>　　This is to inform you that ... <BR><BR><BR>　　SEND (SEND) <BR>　　此命令用于开始一个发送命令，将邮件发送到一个或多个终端上。参数 <BR>域包括了一个回复路径，此命令如果成功就将邮件发送到终端上了。 <BR>　　回复路径包括一个可选的主机列表和发送者邮箱。当出现主机列表时， <BR>表示这是一个传送路径，邮件就是经过这个路径上的每个主机发送到这里的 <BR>（列表上第一个主机是最后经手的主机）。此表用于返回非传递信号到发送者。 <BR>因为每个传递主机地址都被加在此表起始处，它就必须使用发送IPCE而不是接 <BR>收IPCE（如果它们不是一个IPCE的话）清楚的名称。一些出错信息的回复路径 <BR>可能就是空的。 <BR>　　此命令清除回复路径缓冲区，转发路径缓冲区和邮件内容缓冲区，并且将 <BR>此命令的回复路径信息插入到回复路径缓冲区中。 <BR><BR>　　SEND OR MAIL (SOML) <BR>　　此命令用于开始一个邮件操作将邮件内容传送到一个或多个终端上，或者 <BR>传送到邮箱中。对于每个接收者，如果接收者终端打开，邮件内容将被传送到 <BR>接收者的终端上，否则就送到接收者的邮箱中。参数域包括回复路径，如果成 <BR>功地将信息送到终端或邮箱中此命令成功。 <BR>　　回复路径包括一个可选的主机列表和发送者邮箱。当出现主机列表时，表 <BR>示这是一个传送路径，邮件就是经过这个路径上的每个主机发送到这里的（列 <BR>表上第一个主机是最后经手的主机）。此表用于返回非传递信号到发送者。因 <BR>为每个传递主机地址都被加在此表起始处，它就必须使用发送IPCE而不是接收 <BR>IPCE（如果它们不是一个IPCE的话）清楚的名称。一些出错信息的回复路径可 <BR>能就是空的。 <BR>　　此命令清除回复路径缓冲区，转发路径缓冲区和邮件内容缓冲区，并且将 <BR>此命令的回复路径信息插入到回复路径缓冲区中。 <BR><BR>　　SEND AND MAIL (SAML) <BR>　　此命令用于开始一个邮件操作将邮件内容传送到一个或多个终端上，并传 <BR>送到邮箱中。如果接收者终端打开，邮件内容将被传送到接收者的终端上和接 <BR>收者的邮箱中。参数域包括回复路径，如果成功地将信息送到邮箱中此命令成 <BR>功。 <BR>　　回复路径包括一个可选的主机列表和发送者邮箱。当出现主机列表时，表 <BR>示这是一个传送路径，邮件就是经过这个路径上的每个主机发送到这里的（列 <BR>表上第一个主机是最后经手的主机）。此表用于返回非传递信号到发送者。因 <BR>为每个传递主机地址都被加在此表起始处，它就必须使用发送IPCE而不是接收 <BR>IPCE（如果它们不是一个IPCE的话）清楚的名称。一些出错信息的回复路径可 <BR>能就是空的。 <BR>　　此命令清除回复路径缓冲区，转发路径缓冲区和邮件内容缓冲区，并且将 <BR>此命令的回复路径信息插入到回复路径缓冲区中。 <BR><BR>　　RESET (RSET) <BR>　　此命令指示当送邮件操作将被放弃。任何保存的发送者，接收者和邮件内 <BR>容应该被抛弃，所有缓冲区和状态表应该被清除，接收方必须返回OK应答。 <BR><BR>　　VERIFY (VRFY) <BR>　　此命令要求接收者确认参数是一个用户。如果这是（已经知道的）用户名， <BR>返回用户的全名和指定的邮箱。此命令对回复路径缓冲区，转发路径缓冲区和邮 <BR>件内容缓冲区没有影响。 <BR><BR>　　EXPAND (EXPN) <BR>　　此命令要求接收者确认参数指定了一个邮件发送列表，如果是一个邮件发送 <BR>列表，就返回表中的成员。如果这是（已经知道的）用户名，返回用户的全名和 <BR>指定的邮箱。此命令对回复路径缓冲区，转发路径缓冲区和邮件内容缓冲区没有 <BR>影响。 <BR><BR>　　HELP (HELP) <BR>　　此命令导致接收者向HELP命令的发送者发出帮助信息。此命令可以带参数， <BR>并返回特定的信息作为应答。此命令对回复路径缓冲区，转发路径缓冲区和邮件 <BR>内容缓冲区没有影响。 <BR><BR>　　NOOP (NOOP) <BR>　　此命令不影响任何参数和已经发出的命令。它只是说明没有任何操作而不是 <BR>说明接收者发送了一个OK应答。此命令对回复路径缓冲区，转发路径缓冲区和邮 <BR>件内容缓冲区没有影响。 <BR><BR>　　QUIT (QUIT) <BR>　　此命令指示接收方必须发送OK应答然后关闭传送信道。接收方在接到QUIT命 <BR>令并做出响应之前不应该关闭通信信道。发送方在发送QUIT命令和接收到响应之 <BR>前也不应该关闭信道。即使出错，也不应该关闭信道。如果连接被提前关闭，接 <BR>收方应该象接收到RSET命令一样，取消所有等待的操作，但不恢复原先已经做过 <BR>的操作。而发送方应该象接收到暂时错误（4XX）一样假定命令和操作仍在支持 <BR>之中。 <BR><BR>　　TURN (TURN) <BR>　　此命令指定接收方要么发送OK应答并改变角色为发送SMTP，要么发送拒绝信 <BR>息并保持自己的角色。如果程序A现在是发送SMTP，它发出TURN命令后接收到 <BR>OK（250）应答，它就变成了接收SMTP。程序A就进入初始状态，好象通信信道刚 <BR>打开一样，这时它发送220准备好服务信号。如果程序B现在是接收SMTP，它发 <BR>出TURN命令后接收到OK（250）应答，它就变成了发送SMTP。程序A就进入初始状 <BR>态，好象通信信道刚打开一样，这时它准备接收220准备好服务信号。 <BR>若要拒绝改变角色，接收方可以发送502应答。 <BR>　 对于这些命令的顺序有一定的限制。对话的第一个命令必须是HELLO命令， <BR>此命令在此后的会话中也可以使用。如果HELLO命令的参数不可接受，必须由返 <BR>回一个501失败应答，同时接收到的SMTP必须保持在与刚才一致的状态下。 <BR>NOOP，HELP,EXPN和VRFY命令可以在会话的任何时候使用。MAIL，SEND，SOML或 <BR>SAML命令开始一个邮件操作。一旦开始了以后就要发送RCPT和DATA命令。邮件操 <BR>作可以由RSET命令终止。在一个会话中可以有一个或多个操作。 <BR>　　如果在操作开始参数不可接受，必须返回501失败应答，同时接收到的SMTP <BR>必须保持在与刚才一致的状态下。如果操作中的命令顺序出错，必须返回503失 <BR>败应答，同时接收到的SMTP必须保持在与刚才一致的状态下。 <BR>会话的最后一个命令必须是QUIT命令。此命令在会话的其它时间不能使用。 <BR>
+<P style="MARGIN: 5px; LINE-HEIGHT: 150%">4.1.2. COMMAND语法格式 <BR>　 命令是由命令码和其后的参数域组成的。命令码是四个字母组成的，不区别 <BR>大小写。因为下面的命令的作用是相同的： <BR>　　MAIL Mail mail MaIl mAIl <BR>　　这对于引导任何参数值的标记也是适用的，如TO和to就是一样的。命令码和 <BR>参数由一个或多个空格分开。然而在回复路径和转发路径中的参数是区别大小写 <BR>的。特别是在一些主机上，"smith"和"Smith"就根本不是一个用户。 <BR>参数域由不定长的字符串组成，它由&lt;CRLF&gt;结束，接收方在完全接收到此序列前 <BR>不会采取任何行动。方括号代表可选的参数域。如果不选择的话，系统选择默认 <BR>的设置。 <BR>　　下面是SMTP命令： <BR>HELO &lt;SP&gt; &lt;domain&gt; &lt;CRLF&gt; MAIL &lt;SP&gt; FROM:&lt;reverse-path&gt; &lt;CRLF&gt; <BR>RCPT &lt;SP&gt; TO:&lt;forward-path&gt; &lt;CRLF&gt; <BR>DATA &lt;CRLF&gt; <BR>RSET &lt;CRLF&gt; <BR>SEND &lt;SP&gt; FROM:&lt;reverse-path&gt; &lt;CRLF&gt; <BR>SOML &lt;SP&gt; FROM:&lt;reverse-path&gt; &lt;CRLF&gt; <BR>SAML &lt;SP&gt; FROM:&lt;reverse-path&gt; &lt;CRLF&gt; <BR>VRFY &lt;SP&gt; &lt;string&gt; &lt;CRLF&gt; <BR>EXPN &lt;SP&gt; &lt;string&gt; &lt;CRLF&gt; <BR>HELP [&lt;SP&gt; &lt;string&gt;] &lt;CRLF&gt; <BR>NOOP &lt;CRLF&gt; <BR>QUIT &lt;CRLF&gt; <BR>TURN &lt;CRLF&gt; <BR><BR>　　上面参数域的格式在下面给BNF的格式给出，其中的"..."代表对于一个 <BR>域的一次或多次的重复。 <BR>&lt;reverse-path&gt; ::= &lt;path&gt; <BR>&lt;forward-path&gt; ::= &lt;path&gt; <BR>&lt;path&gt; ::= "&lt;" [ &lt;a-d-l&gt; ":" ] &lt;mailbox&gt; "&gt;" <BR>&lt;a-d-l&gt; ::= &lt;at-domain&gt; | &lt;at-domain&gt; "," &lt;a-d-l&gt; <BR>&lt;at-domain&gt; ::= "@" &lt;domain&gt; <BR>&lt;domain&gt; ::= &lt;element&gt; | &lt;element&gt; "." &lt;domain&gt; <BR>&lt;element&gt; ::= &lt;name&gt; | "#" &lt;number&gt; | "[" &lt;dotnum&gt; "]" <BR>&lt;mailbox&gt; ::= &lt;local-part&gt; "@" &lt;domain&gt; <BR>&lt;local-part&gt; ::= &lt;dot-string&gt; | &lt;quoted-string&gt; <BR>&lt;name&gt; ::= &lt;a&gt; &lt;ldh-str&gt; &lt;let-dig&gt; <BR>&lt;ldh-str&gt; ::= &lt;let-dig-hyp&gt; | &lt;let-dig-hyp&gt; &lt;ldh-str&gt; <BR>&lt;let-dig&gt; ::= &lt;a&gt; | &lt;d&gt; <BR>&lt;let-dig-hyp&gt; ::= &lt;a&gt; | &lt;d&gt; | "-" <BR>&lt;dot-string&gt; ::= &lt;字符串&gt; | &lt;字符串&gt; "." &lt;dot-string&gt; <BR>&lt;字符串&gt; ::= &lt;字符&gt; | &lt;字符&gt; &lt;字符串&gt; <BR>&lt;quoted-string&gt; ::= """ &lt;qtext&gt; """ <BR>&lt;qtext&gt; ::= "\" &lt;x&gt; | "\" &lt;x&gt; &lt;qtext&gt; | &lt;q&gt; | &lt;q&gt; &lt;qtext&gt; <BR>&lt;字符&gt; ::= &lt;c&gt; | "\" &lt;x&gt; <BR>&lt;dotnum&gt; ::= &lt;snum&gt; "." &lt;snum&gt; "." &lt;snum&gt; "." &lt;snum&gt; <BR>&lt;number&gt; ::= &lt;d&gt; | &lt;d&gt; &lt;number&gt; <BR>&lt;CRLF&gt; ::= &lt;CR&gt; &lt;LF&gt; <BR>&lt;CR&gt; ::= 回车符（ASCII码13） &lt;LF&gt; ::= （ASCII码10） <BR>&lt;SP&gt; ::= 空格（ASCII码32） &lt;snum&gt; ::=由一个，两个或三个数字组成的介 <BR>于0-255之间的数字 <BR>&lt;a&gt; ::= 所有A-Z的52个大小写英文字母 <BR>&lt;c&gt; ::= 128个ASCII字符，但不包括空格和特殊字符 <BR>&lt;d&gt; ::= 0-9数字 <BR>&lt;q&gt; ::=不包括&lt;CR&gt;，&lt;LF&gt;，"或\的128个ASCII字符 <BR>&lt;x&gt; ::=所有128个ASCII字符 <BR>&lt;special&gt; ::= "&lt;" | "&gt;" | "(" | ")" | "[" | "]" | "\" | "." | "," | ";" | ":" | "@" """ <BR>或控制字符 <BR>　　注意： "\"是一个转意字符，它表示在其后的字符代表另外的意义。 <BR>例如"Joe\,Smith"用于表示单独一个由逗号分隔的用户名。主机通常由转化为 <BR>地址的名称代表。注意：域的名称元素是正式的名称，不能够使用昵称或假名。 <BR>有时候名称的转变机制可能不知道主机，这就造成了通信的阻塞。为了解决这 <BR>个问题，可以采取两种方法：一种方法是：在"#"后加入一个十进制数表示主机地址； <BR>另一种方法是在其后加入32位的IP地址，IP地址的形式是由句号分隔的四个介于 <BR>0-255之间的十进制数。时间戳行和返回路径行的格式通常由下面定义： <BR>&lt;return-path-line&gt; ::= "Return-Path:" &lt;SP&gt;&lt;reverse-path&gt;&lt;CRLF&gt; <BR>&lt;time-stamp-line&gt; ::= "Received:" &lt;SP&gt; &lt;stamp&gt; &lt;CRLF&gt; <BR>&lt;stamp&gt; ::= &lt;from-domain&gt; &lt;by-domain&gt; &lt;opt-info&gt; ";" &lt;daytime&gt; <BR>&lt;from-domain&gt; ::= "FROM" &lt;SP&gt; &lt;域&gt; &lt;SP&gt; <BR>&lt;by-domain&gt; ::= "BY" &lt;SP&gt; &lt;域&gt; &lt;SP&gt; <BR>&lt;opt-info&gt; ::= [&lt;via&gt;] [&lt;with&gt;] [&lt;id&gt;] [&lt;for&gt;] <BR>&lt;via&gt; ::= "VIA" &lt;SP&gt; &lt;连接&gt; &lt;SP&gt; <BR>&lt;with&gt; ::= "WITH" &lt;SP&gt; &lt;协议&gt; &lt;SP&gt; <BR>&lt;id&gt; ::= "ID" &lt;SP&gt; &lt;字符串&gt; &lt;SP&gt; <BR>&lt;for&gt; ::= "FOR" &lt;SP&gt; &lt;路径&gt; &lt;SP&gt; <BR>&lt;连接&gt; ::= 在网络信息中心注册的连接的标准名称 <BR>&lt;协议&gt; ::= 在网络中心注册的协议的名称 <BR>&lt;daytime&gt; ::= &lt;SP&gt; &lt;日&gt; &lt;SP&gt; &lt;时间&gt; <BR>&lt;日期&gt; ::= &lt;日&gt; &lt;SP&gt; &lt;月&gt; &lt;SP&gt; &lt;年&gt; <BR>&lt;时间&gt; ::= &lt;小时&gt; ":" &lt;分&gt; ":" &lt;秒&gt; &lt;SP&gt; &lt;时区&gt; <BR>&lt;dd&gt; ::= 由一个或两个数字组成的每月1-31日 <BR>&lt;月&gt; ::= "JAN" | "FEB" | "MAR" | "APR" | "MAY" | "JUN" | "JUL" | "AUG" | "SEP" | "OCT" | "NOV" | "DEC" <BR>&lt;年&gt; ::= 由两位数字表示本世界的年代00-99 <BR>&lt;小时&gt; ::= 每天的24小时，由0到24 <BR>&lt;分&gt; ::= 每小时的分钟数0-59 <BR>&lt;秒&gt; ::= 每分钟的秒数0-59 <BR>&lt;时区&gt; ::= 全球标准时区 <BR><BR>返回路径例子 <BR>Return-Path: &lt;@CHARLIE.ARPA,@BAKER.ARPA:JOE@ABLE.ARPA&gt; <BR><BR>时间戳行例子 <BR>Received: FROM ABC.ARPA BY XYZ.ARPA ; 22 OCT 81 09:23:59 PDT <BR>Received: from ABC.ARPA by XYZ.ARPA via TELENET with X25 <BR>id M12345 for <A href="mailto:Smith@PDQ.ARPA"><FONT color=#000000>Smith@PDQ.ARPA</FONT></A> ; 22 OCT 81 09:23:59 PDT <BR><BR>4.2. SMTP响应 <BR>　　对SMTP命令的响应是多样的，它确定了在邮件传输过程中请求和处理的 <BR>同步，也保证了发送SMTP知道接收SMTP的状态。每个命令必须有且只有一个 <BR>响应。 <BR>　　SMTP响应由三位数字组成，其后跟一些文本。数字帮助决定下一个应该 <BR>进入的状态，而文本对人是有意义的。三位的响应已经包括了足够的信息， <BR>不用再阅读文本，文本可以直接抛弃或者传递给用户。特别的是，文本是与 <BR>接收和环境相关的，所以每次接收到的文本可能不同。在附录E中可以看到 <BR>全部的响应码。正规的情况下，响应由下面序列构成：三位的数字，&lt;SP&gt;， <BR>一行文本和一个&lt;CRLF&gt;，或者也可以是一个多行响应。只有EXPN和HELP命令 <BR>可以导致多行应答，然而，对所有命令，多行响应都是允许的。 <BR>　 <BR>4.2.1. REPLY CODES BY FUNCTION GROUPS 500 格式错误，命令不可识别 <BR>（此错误也包括命令行过长） <BR>501 参数格式错误 <BR>502 命令不可实现 <BR>503 错误的命令序列 <BR>504 命令参数不可实现 <BR>211 系统状态或系统帮助响应 <BR>214 帮助信息 <BR>220 &lt;domain&gt; 服务就绪 <BR>221 &lt;domain&gt; 服务关闭传输信道 <BR>421 &lt;domain&gt; 服务未就绪，关闭传输信道（当必须关闭时，此应答可以作 <BR>为对任何命令的响应） <BR>250 要求的邮件操作完成 <BR>251 用户非本地，将转发向&lt;forward-path&gt; <BR>450 要求的邮件操作未完成，邮箱不可用（例如，邮箱忙） <BR>550 要求的邮件操作未完成，邮箱不可用（例如，邮箱未找到，或不可访问） <BR>451 放弃要求的操作；处理过程中出错 <BR>551 用户非本地，请尝试&lt;forward-path&gt; <BR>452 系统存储不足，要求的操作未执行 <BR>552 过量的存储分配，要求的操作未执行 <BR>553 邮箱名不可用，要求的操作未执行（例如邮箱格式错误） <BR>354 开始邮件输入，以&lt;CRLF&gt;.&lt;CRLF&gt;结束 <BR>554 操作失败 <BR>　 <BR>4.3. 命令和应答序列 <BR>　　发送者和接收者之间的通信是一问一答的交替对话形式，由发送者控制。 <BR>这样，发送发出一条命令，接收者发出一个响应。接收者在发送下一条指令 <BR>前必须等应答。一个重要的应答是连接应答。在连接完成时，接收者通常会 <BR>发送220"服务就绪"。发送者在继续发送指令前会等待此应答。注意：每个连 <BR>接应答必须拥有服务主机的正式名称作为第一部分，其后跟响应码。例如： <BR>　　220 &lt;SP&gt; USC-ISIF.ARPA &lt;SP&gt; Service ready &lt;CRLF&gt; <BR>　 下面列出了成功和失败应答，这些应答必须遵守严格的次序，接收者可以 <BR>不理会应答中的文本，但是由数字指定的意义和操作和命令应答序列不能更改。 <BR>命令响应序列： <BR>　　每个命令列出了它可能的应答。使用在可能应答前的前缀"P"表示预备的 <BR>（未用在SMTP中），"I"表示中间的，"S"表示成功，"F"表示失败，"E"表示错 <BR>误。如果STMP接收者必须关闭信道，可以对任何命令作出421（服务不可用， <BR>关闭传输信道）响应。此表基于下面要讲述的状态图： <BR>CONNECTION ESTABLISHMENT（建立连接） <BR>S: 220 <BR>F: 421 <BR>HELO <BR>S: 250 <BR>E: 500, 501, 504, 421 <BR>MAIL <BR>S: 250 <BR>F: 552, 451, 452 <BR>E: 500, 501, 421 <BR>RCPT S: 250, 251 F: 550, 551, 552, 553, 450, 451, 452 E: 500, 501, 503, 421 <BR>DATA <BR>I: 354 -&gt; data -&gt; S: 250 <BR>F: 552, 554, 451, 452 <BR>F: 451, 554 <BR>E: 500, 501, 503, 421 <BR>RSET <BR>S: 250 <BR>E: 500, 501, 504, 421 <BR>SEND <BR>S: 250 <BR>F: 552, 451, 452 <BR>E: 500, 501, 502, 421 <BR>SOML <BR>S: 250 <BR>F: 552, 451, 452 <BR>E: 500, 501, 502, 421 <BR>SAML <BR>S: 250 <BR>F: 552, 451, 452 <BR>E: 500, 501, 502, 421 <BR>VRFY <BR>S: 250, 251 <BR>F: 550, 551, 553 <BR>E: 500, 501, 502, 504, 421 <BR>EXPN <BR>S: 250 <BR>F: 550 <BR>E: 500, 501, 502, 504, 421 <BR>HELP <BR>S: 211, 214 <BR>E: 500, 501, 502, 504, 421 <BR>NOOP <BR>S: 250 <BR>E: 500, 421 <BR>QUIT <BR>S: 221 <BR>E: 500 <BR>TURN <BR>S: 250 <BR>F: 502 <BR>E: 500, 503 <BR><BR>4.4. 状态图 <BR>　　下面状态图是一个简单的SMTP实现，每一组命令都有一个状态图。在图中， <BR>只使用了响应码的第一位数字作为响应的代表。命令组是对每个命令建立模式然 <BR>后以结构模式将命令集中起来的。对于每个命令有三种可能的应答：成功（S）， <BR>失败（F）和错误（E）。在状态中，我们使用B代表开始，使用W代表等待应答。 <BR><BR><BR>　 <BR><BR><BR><BR>　　此状态图使用了如下命令：HELO, MAIL, RCPT, RSET, SEND, SOML, <BR>SAML, VRFY, EXPN, HELP, NOOP, QUIT, TURN. <BR>　　下面是对于DATA命令的更复杂的状态图： <BR><BR><BR>　 <BR><BR><BR><BR>　 <BR>　　注意：这里的邮件内容是多行的，接收者只能收到最后一行时才发出应答。 <BR>　 <BR>4.5. 详细内容 <BR>4.5.1. 最小实现 <BR>　　为使SMTP能够工作，对于接收者来说，这是最少应该实现的命令： <BR>COMMANDS - HELO <BR>MAIL <BR>RCPT <BR>DATA <BR>RSET <BR>NOOP <BR>QUIT <BR><BR>4.5.2. 透明性 <BR>　　没有对数据透明性的保证，在发送类似"&lt;CRLF&gt;.&lt;CRLF&gt;"结束邮件内容时会 <BR>发生错误。通常，用户不关心这个"非法"序列。若要所有用户能够透明地使用 <BR>必须使用以下措施： <BR>1. 在发送邮件之间，发送SMTP必须检查邮件的每一行，如果是一个句号，就 <BR>在行首再加一个句号。 <BR>2. 当邮件被接收时，接收SMTP必须检查邮件的每一行，如果发现一行仅有一 <BR>个句号，邮件就此结束，如果一行中有两个句号，那么这一行中就只应该有一 <BR>个句号，而将第一个句号删除。 <BR>　　发送的邮件内容可以包括所有128个ASCII字符。所有字符发送到收信者的 <BR>邮箱，包括格式符号和其它控制字符。如果传输信道提供一个8位数据流，7位 <BR>的ASCII码就可以在其中传送，而将最高位置为0。一些系统在接收和存储时需 <BR>要对数据进行格式转换。对于使用不同于ASCII字符集的主机或不能以串的形 <BR>式而只能以记录形式存储的主机更是如此，如果必须进行转换，必须能够再次 <BR>转换回来，对于用于存储转发的主机更是如此。 <BR>　 <BR>4.5.3. 大小 <BR>　　一些对象需要最大和最小大小。也就是说，每个实现必须能够接收大于最 <BR>小大小的对象，不能发送大于最大大小的对象。对于可能的最大大小，实现技 <BR>术上并没有限制。 <BR>用户 用户名的最大长度是64个字节。 <BR>域 域的最大长度是64个字符 <BR>路径 回复路径和转发路径的最大长度是256个字符 <BR>命令行 命令行的最大长度，包括回车符为512个字符 <BR>应答行 应答行的最大长度，包括回车符为512个字符 <BR>文本行 文本行的最大长度，包括回车符和为透明性增加的字符不得超过1000 <BR>个字符 <BR>接收缓冲区 接收缓冲区最多可以容纳100个接收者 <BR><BR>如果出错，应答如下： <BR>500 行过长 <BR>501 路径过多 <BR>552 接收者过多 <BR>552 邮件内容过多 <BR><BR><BR>附录 A TCP传输服务 <BR><BR>　　传输控制协议（TCP）在ARPA Internet中使用，并遵守网络协议的US DoD标 <BR>准。SMTP传输信道连接建立在发送进程的端口U和接收进程的端口L上。一个单一 <BR>的全双工信道用于传输。被指定用于此协议的服务端口为25，也就是说L=25。 <BR>TCP连接支持传输8位字节，而SMTP只需要传输7位；这样，每个8位字符的最高 <BR>位被置为0。 <BR><BR>附录 B NCP传输服务 <BR><BR>　　ARPANET主机-主机协议（由网络控制程序实现）也可以用于ARPANET。 <BR>SMTP传输信道连接建立在发送进程的端口U和接收进程的端口L上；其后，根据 <BR>初始连接协议（ICP）建立一对简单连接。这一对简单连接被用作传输信道。 <BR>此协议被指定为连接套接字25，也就是说L=25。NCP连接支持传输8位字节，而 <BR>SMTP只需要传输7位；这样，每个8位字符的最高位被置为0。 <BR><BR>附录 C NITS <BR><BR>　　也可以使用网络独立转输服务。通过在NITS在发送进程和接收进程之间建 <BR>立传输信道。发送进程执行CONNECT原语，然后等待接收ACCEPT原语。NITS连接 <BR>支持传输8位字节，而SMTP只需要传输7位；这样，每个8位字符的最高位被置 <BR>为0。 <BR><BR>附录 D X.25传输服务 <BR><BR>　　可以直接使用公共数据网络接收的X.25服务，然而，推荐在其上使用可靠 <BR>的端到端的协议如TCP。 <BR><BR>附录 E 应答码构成方法 <BR><BR>　　三位的应答码每一位都有特定的意义。每一位应答表示是否是成功的，失败 <BR>的或未完成的。通过这一位，不复杂的SMTP发送就可以决定下一步的操作，如果 <BR>发送方希望大概了解究竟出了什么问题，它可以检测第二位，而第三位则保存了 <BR>最后更完整的信息。也就是说，从第一位到第三位，接收方可以一步比一步精 <BR>确地确定接收方的状态。对于第一位有五种可能的表示代表不同的意义： <BR><BR>　　1yz 部分完成应答 <BR><BR>　　命令被接受，但是要求的操作被中止，原因在应答码中。发送方应该再次 <BR>发送另一命令指明是否继续操作，或者放弃操作。 <BR><BR>　　2yz 全部完成应答 <BR><BR>　　要求的操作已经完成，可以开始另一个新的请求。 <BR><BR>　　3yz 需要近一步信息的部分完成应答 <BR><BR>　　命令被接受，但是要求的操作被中止，需要接收进一步的信息。发送方应 <BR>该发送另一条命令指明进一步的信息。 <BR><BR>　　4yz 暂时未完成应答 <BR><BR>　　命令未被接受，要求的操作也未执行，但是发生错误的状态是暂时的，可 <BR>以再一次请求操作。发送者应该返回命令序列的开始命令（如果有的话）。很 <BR>难解释这个暂时的意义，特别对于两个不同的站点来说。区别应答是属于些类 <BR>还是下一类的方法是：如果能够不加任何改变地重复的再一次发送命令，就是 <BR>本类的，如果不是，就是下一类（5yz）的。 <BR><BR>　　5yz 永久未完成应答 <BR><BR>　　命令未被接受，要求的操作未完成。发送对命令的重复不起作用。即使一 <BR>些出错条件已经改变，但是用户已经不希望重试，而希望在未来的某个时间再 <BR>进行操作。 <BR><BR>　　应答的第二位的意义有以下几类： <BR><BR>x0z 语法：此类型的应答是针对以下情况的：语法错误；符合语法但命令不存 <BR>在功能；未完成或冗余的命令。 <BR><BR>x1z 信息：此类型的应答是用于请求信息的，如状态或帮助信息。 <BR><BR>x2z 连接：此类型的应答是关于传输信道的。 <BR><BR>x3z 未使用。 <BR><BR>x4z 未使用。 <BR><BR>x5z 邮件系统：此类型的应答指明接收方邮件系统关于请求传送或其它操作 <BR>的状态的。 <BR><BR>　　第三位给出了更详细的说明。列出的应答表说明了这一点。文本应答是 <BR>推荐使用的，而不是必须使用的，它的内容是可以根据不同情况而变化的。 <BR>另一方面，应答码必须严格遵守本节的说明。接收方不应该因为稍稍的不同 <BR>情况而自己创建新的代码而不使用已经定义的代码。例如，如NOOP命令的情 <BR>况，如果成功执行它后，不用返回任何新的信息，只用返回250应答。当发送 <BR>的命令要求一个未实现的站点指定操作时，应答应该是502。 应答文本可能 <BR>多于一行；在此情况下，文本必须被标记，接收文本的一方才不致于少读入 <BR>一行数据。这要求特定的格式说明多行应答。此格式是：每一行，除了最后 <BR>一行外，都以应答码加一个"-"开始。而最后一行以应答码加空格&lt;SP&gt;开始。 <BR>如下例： <BR><BR>123-First line <BR><BR>123-Second line <BR><BR>123-234 text beginning with numbers <BR><BR>123 The last line <BR><BR>　　通常情况下，接收的一方只用寻找应答码加空格的那一行就可以，而忽 <BR>略前面行的内容。在特殊的情况下，发送方必须知道响应文本的内容，这时 <BR>接收应答的一方可以通过当时的情况正确地决定是否需要知道文本的内容。 　 <BR><BR>附录 F 一些例子 <BR><BR><BR>本节提供了一些SMTP会话的完整例子。 <BR><BR>典型的SMTP操作 <BR><BR>此类显示邮件如何由在USC-ISIF和机上的Smith发送到BBN-UNIX主机上 <BR>Jones，Green和Brown的。这里，我们假设USC-ISIF主机直接和BBN-UNIX主机联系。 <BR>Jones和Brown接收邮件，而Green在BBN-UNIX上没有邮箱。 <BR><BR>R: 220 BBN-UNIX.ARPA Simple Mail Transfer Service Ready <BR><BR>S: HELO USC-ISIF.ARPA <BR><BR>R: 250 BBN-UNIX.ARPA <BR><BR>　 <BR><BR>S: MAIL FROM:&lt;<A href="mailto:Smith@USC-ISIF.ARPA"><FONT color=#000000>Smith@USC-ISIF.ARPA</FONT></A>&gt; <BR><BR>R: 250 OK <BR><BR>　 <BR><BR>S: RCPT TO:&lt;<A href="mailto:Jones@BBN-UNIX.ARPA"><FONT color=#000000>Jones@BBN-UNIX.ARPA</FONT></A>&gt; <BR><BR>R: 250 OK <BR><BR>　 <BR><BR>S: RCPT TO:&lt;<A href="mailto:Green@BBN-UNIX.ARPA"><FONT color=#000000>Green@BBN-UNIX.ARPA</FONT></A>&gt; <BR><BR>R: 550 No such user here <BR><BR>　 <BR><BR>S: RCPT TO:&lt;<A href="mailto:Brown@BBN-UNIX.ARPA"><FONT color=#000000>Brown@BBN-UNIX.ARPA</FONT></A>&gt; <BR><BR>R: 250 OK <BR><BR>　 <BR><BR>S: DATA <BR><BR>R: 354 Start mail input; end with &lt;CRLF&gt;.&lt;CRLF&gt; <BR><BR>S: Blah blah blah... <BR><BR>S: ...etc. etc. etc. <BR><BR>S: . <BR><BR>R: 250 OK <BR><BR>　 <BR><BR>S: QUIT <BR><BR>R: 221 BBN-UNIX.ARPA Service closing transmission channel <BR><BR>放弃SMTP操作 <BR><BR>R: 220 MIT-Multics.ARPA Simple Mail Transfer Service Ready <BR><BR>S: HELO ISI-VAXA.ARPA R: 250 MIT-Multics.ARPA <BR><BR>S: MAIL FROM:&lt;<A href="mailto:Smith@ISI-VAXA.ARPA"><FONT color=#000000>Smith@ISI-VAXA.ARPA</FONT></A>&gt; <BR><BR>R: 250 OK <BR><BR>　 <BR><BR>S: RCPT TO:&lt;<A href="mailto:Jones@MIT-Multics.ARPA"><FONT color=#000000>Jones@MIT-Multics.ARPA</FONT></A>&gt; <BR><BR>R: 250 OK <BR><BR>　 <BR><BR>S: RCPT TO:&lt;<A href="mailto:Green@MIT-Multics.ARPA"><FONT color=#000000>Green@MIT-Multics.ARPA</FONT></A>&gt; <BR><BR>R: 550 No such user here <BR><BR>　 <BR><BR>S: RSET <BR><BR>R: 250 OK <BR><BR>　 <BR><BR>S: QUIT <BR><BR>R: 221 MIT-Multics.ARPA Service closing transmission channel <BR><BR><BR><BR>转发邮件 <BR><BR>第一步：源主机到转发主机 <BR><BR>　 <BR><BR>R: 220 USC-ISIE.ARPA Simple Mail Transfer Service Ready <BR><BR>S: HELO MIT-AI.ARPA <BR><BR>R: 250 USC-ISIE.ARPA <BR><BR>　 <BR><BR>S: MAIL FROM:&lt;<A href="mailto:JQP@MIT-AI.ARPA"><FONT color=#000000>JQP@MIT-AI.ARPA</FONT></A>&gt; <BR><BR>R: 250 OK <BR><BR>　 <BR><BR>S: RCPT TO:&lt;@USC-ISIE.ARPA:Jones@BBN-VAX.ARPA&gt; <BR><BR>R: 250 OK <BR><BR>　 <BR><BR>S: DATA <BR><BR>R: 354 Start mail input; end with &lt;CRLF&gt;.&lt;CRLF&gt; <BR><BR>S: Date: 2 Nov 81 22:33:44 <BR><BR>S: From: John Q. Public &lt;<A href="mailto:JQP@MIT-AI.ARPA"><FONT color=#000000>JQP@MIT-AI.ARPA</FONT></A>&gt; <BR><BR>S: Subject: The Next Meeting of the Board <BR><BR>S: To: <A href="mailto:Jones@BBN-Vax.ARPA"><FONT color=#000000>Jones@BBN-Vax.ARPA</FONT></A> <BR><BR>S: <BR><BR>S: Bill: <BR><BR>S: The next meeting of the board of directors will be <BR><BR>S: on Tuesday. <BR><BR>S: John. <BR><BR>S: . <BR><BR>R: 250 OK <BR><BR>　 <BR><BR>S: QUIT <BR><BR>R: 221 USC-ISIE.ARPA Service closing transmission channel <BR><BR></P>	</td></tr>
+	<tr><td>
+
+<table border="0" cellspacing="0" cellpadding="0" style="border-collapse: collapse" width="100%">
+<tr><td align="center">
+<script src="http://online.265.com/cn/4/75402_40849.php"></script>
+</td></tr>
+</table>
+	</td></tr>
+	<tr><td height=1 bgcolor="#666666"></td></tr>
+	<tr><td height=30 align=center>
+	【<a href="http://www.lihuasoft.net/comment/?type=1&id=911" class=list1>我来说两句</a>】 
+	【<a href="" class=list1 onclick="window.open('sendmail.php?url='+window.location+'&title=RFC821-简单邮件传输协议(SMTP) 中文版','','left=120,top=120,width=360,height=280');return false;">发送给朋友</a>】
+	
+	【<a href="" class=list1 onclick="window.external.AddFavorite(window.location, document.title);return false;">加入收藏</a>】 
+	【<a href="#" class=list1>返加顶部</a>】 
+	【<a href=""  class=list1 onclick="window.print();return false;">打印本页</a>】 
+	【<a href=""  class=list1 onclick="window.close();return false;">关闭窗口</a>】
+	</td></tr>
+	<tr><td height=5></td></tr>
+	<tr><td height=30 align=center>
+	在 <img src="http://img.baidu.com/img/union/logo_union2.gif" border=0 alt=""> 中搜索 <a href="http://www.baidu.com/baidu?tn=lihuasoft&word=RFC821-简单邮件传输协议(SMTP) 中文版">RFC821-简单邮件传输协议(SMTP) 中文版</a>
+	</td></tr>
+	</table>
+
+		<script>
+	function setniming()
+	{
+		if( post.none.checked ) {
+			
+			post.author.value = "本站网友";
+		}
+		else {
+			
+			post.author.value = "";
+		}
+	}
+	function checkValid()	
+	{
+		return false;
+	}
+	</script>
+	<table border="0" cellspacing="0" cellpadding="0" style="border-collapse: collapse" width="580" align=center>
+		<form method=post action="/comment/index.php?comm=update&id=911&type=1" id=post>
+	<tr><td width=1 bgcolor=#A6A6A6><br></td>
+	<td width=580 align=center>
+		<table border=0 cellpadding=0 cellspacing=0 width=560>
+		<tr bgcolor=#00468C><td height=25>&nbsp;<font color=#ffffff>■&nbsp;[欢迎对本文发表评论]</font></td>
+		<td align=right><br></td>
+		</tr>
+		<tr><td align=center colspan=2 bgcolor=#EDEDED>
+			<table width=580 border=0 cellpadding=5>
+			<tr><td>用　　户：<input name=author type=text size=30>
+	　匿名发出：<input type=checkbox name="none" value="true"  onclick="setniming()"></td></tr>
+			<tr><td width=550 valign=top>
+				<table border=0>
+				<tr><td><textarea cols=65 rows=10 name=content></textarea></td></tr>
+				<tr><td height=30><font color=#FF0000>您要为您所发的言论的后果负责，故请各位遵纪守法并注意语言文明。</font></td></tr>
+				<tr><td align=right>			
+
+				<input type=submit value=" 发 表 ">
+				</td></tr>
+				</table>
+			</td>
+			</tr>
+			</table>
+		</td></tr>
+		</table>
+	</td>
+
+	<td width=1 bgcolor=#A6A6A6><br></td></tr>
+	<tr><td colspan=3 height=1 bgcolor=#A6A6A6><img src=/comment/newimg/c.gif width=1 height=1></td></tr>
+	</form>
+
+	</table>
+	</td>
+	</tr>
+</table>
+
+<table width=780 border=0 cellspacing="0" cellpadding="0" align=center >
+
+<tr><td height=25 colspan=4 bgcolor="#6589D1" align=center style="color:#FFFFFF">
+<a href="/aboutus" class=list2>关于我们</a> / <a href="http://www.lihuasoft.net/item/" class=list2>合作推广</a> / <a href="http://www.lihuasoft.net/bbs/forumdisplay.php?fid=45" class=list2>给我留言</a> / <a href="http://www.lihuasoft.net/bbs/forumdisplay.php?fid=44" class=list2>版权举报</a> / <a href="http://www.lihuasoft.net/bbs/forumdisplay.php?fid=42" class=list2>意见建议</a> / <a href="http://www.lihuasoft.net/item/guanggao.php" class=list2>广告投放</a> / <a href="http://www.lihuasoft.net/aboutus/links.php" target="_blank" class=list2>友情链接</a>
+</td></tr>
+<tr><td colspan=4 align="center"><hr width=530>
+<p style="line-height: 150%; margin: 10">
+Copyright &copy;2001-2003 Allrights reserved<br>
+e_mail:站长：webmaster(at)lihuasoft.net <br>
+<a href="subject/qqgroup.php">网站编程QQ群</a> &nbsp;
+<br>
+<a href="http://www.miibeian.gov.cn" target="_blank">京ICP备05001064号</a>
+<p align=center>
+页面生成时间：0.02885<br>
+
+
+
+</td></tr>
+</table>
+
+
+<script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-127391-1";
+urchinTracker();
+</script>
+<script id='y_js' src='http://stat.aliunion.cn.yahoo.com/stat.js?pubid=49909'></script>
+</center>
+</body>
+</html>

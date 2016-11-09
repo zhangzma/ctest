@@ -1,0 +1,11 @@
+;; Object atan
+;; EDE Project Files are auto generated: Do Not Edit
+(ede-proj-project "atan"
+  :file "Project.ede"
+  :name "atan"
+  :targets
+  (list
+    (ede-proj-target-makefile-program "atan"
+      :name "atan"
+      :path ""
+      :source '("main.cc"))))
