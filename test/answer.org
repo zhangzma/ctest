@@ -1,0 +1,92 @@
+
+* 高质量C/C++编程练习
+
+** BOOL/float/指针变量与零值比较
+   1. BOOL型flag与零值比较
+      #+begin_src c++
+        if (flag) {
+        }
+      #+end_src
+   2. float型值x与零值比较
+      #+begin_src c++
+        const float EPSON = 0.000005;
+        if (x >= -EPSON && x <- EPSON) {
+        }
+      #+end_src
+   3. 指针变量char*p与零值比较
+      #+begin_src c++
+        if (p == (void *)0) {
+        }
+      #+end_src
+** sizeof()
+   1. 
+      #+begin_src c++
+         char str[] = "Hello";
+         char *p    = str;
+         int   n    = 10;
+      #+end_src
+      
+      sizeof(str) = 6;
+      sizeof(p) = 4;
+      sizeof(n) = 4;
+
+   2. 
+      #+begin_src c++
+         void Func(char str[100])
+         {
+             // 请计算
+             sizeof(str) = 4
+         }
+      #+end_src
+         
+   3.
+      #+begin_src c++
+        void *p = malloc(100);
+        // 
+        sizeof(p) = 100;
+      #+end_src
+
+** 三、简答题
+   1. 头文件ifndef/define/endif作用
+      防止头文件重复引用
+   2. 如下两条语句的作用
+      #+begin_src c++
+        #include <filename.h>
+        #include "filename.h"
+      #+end_src
+        filename.h头文件的存储位置不同，<>是系统库文件；""是项目中定义的头文件。
+   3. const有什么用途？（请至少说明两种）
+      限制变量为只读变量，禁止修改变量。
+   4. 
+   5. 以下两个for循环的优缺点
+      第一个
+      代码结构简单清晰，易于理解。但循环内部有判断存在，不利于编译器优化。
+      第二个
+      循环结构简单，判断条件清晰。但代码略微冗长。
+
+** 五、编写strcpy函数
+   已知strcpy函数的原型是：
+   #+begin_src c++
+     // strDest是目的字符串，strSrc是源字符串
+     char *strcpy(char *strDest, const char *strSrc);
+   #+end_src
+   1. 不调用C/C++的字符串库函数，实现函数
+      #+begin_src c++
+        char *strcpy(char *strDest, const char *strSrc)
+        {
+            while (strDest++ = strSrc++, *strSrc != '\0') {
+            }
+            return strDest;
+        } 
+      #+end_src
+   2. strcpy能把strSrc的内容复制到strDest，为什么还要char*类型的返回值？
+      可以实现 + strcpy()类似的表达式。
+
+** 六、编写类String
+   
+
+
+
+
+        
+   
