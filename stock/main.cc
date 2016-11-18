@@ -4,16 +4,55 @@
  *
  * @file main.cc
  *
- * Abstract
+ * stock测试代码
  *
- * Detail
+ * 概述：
+ *    1. test_date()
+ *    2. test_daily_record()
+ *    3. test_fund()
  *
  * @author ZhangHb zhaingbo@foxmail.com
  *
  *************************************************************************/
 #define _MAIN_C_
 #include "fund.h"
+#include "gardener.h"
 #include <iostream>
+#include <sstream>
+
+void test_gardener();
+
+template<typename T>
+T string_cast(const std::string &str)
+{
+    std::istringstream iss(str);
+    T num;
+    iss >> num;
+    return num;    
+}
+
+
+
+int main(int argc, char *argv[])
+{
+    test_gardener();
+    // test_date();
+    // test_daily_record();
+    // test_fund();
+
+    std::cout << string_cast<double>(argv[1]) << std::endl;
+    return 0;
+}
+
+void test_gardener()
+{
+    std::cout << "========== Class Gardener' tests ==========" << std::endl;
+    Gardener gar("");
+    std::cin >> gar;
+    std::cout << gar << std::endl;
+    std::cout << gar.get_date() << std::endl;
+}
+
 
 void test_date()
 {
@@ -30,7 +69,6 @@ void test_date()
 
     std::cout << "========== End of tests ==========" << std::endl;
 }
-
 
 void test_daily_record()
 {
@@ -61,16 +99,10 @@ void test_fund()
     Date date2(2016, 11, 17);
     DailyRecord dr2(date2);
     dr2.set_price(13.0, 17.9, 14.5, 14.2);
-
     f.add_record(dr2);
-    
+
     std::cout << f << std::endl;
-}
 
-int main(int argc, char *argv[])
-{
-    test_fund();
-    return 0;
+    f.read_file("data.txt");
 }
-
 

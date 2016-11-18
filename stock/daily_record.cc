@@ -76,7 +76,7 @@ std::ostream& operator<<(std::ostream& os, const DailyRecord& dr)
 {
     os << dr._date << "\t";
     char buff[64];
-    sprintf(buff, "%.2f\t%.2f\t%.2f\t%.2f",
+    sprintf(buff, "%.02f\t%.02f\t%.02f\t%.02f",
             dr._price_opening,
             dr._price_highest,
             dr._price_lowest,

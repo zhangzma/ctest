@@ -1,6 +1,6 @@
 # 
 CC=g++
-obj=main.o date.o daily_record.o fund.o
+obj=main.o date.o daily_record.o fund.o gardener.o
 target=stock
 
 $(target):$(obj)

@@ -24,6 +24,7 @@ public:
     Fund(const std::string &name);
     virtual ~Fund();
     void add_record(const DailyRecord &r);
+    void read_file(const char* fn);
 
 public:
 friend std::ostream& operator<<(std::ostream&, const Fund&);
