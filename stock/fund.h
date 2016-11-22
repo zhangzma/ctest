@@ -25,17 +25,19 @@ public:
     virtual ~Fund();
     void add_record(const DailyRecord &r);
     void read_file(const char* fn);
+    uint32_t size() const;
 
 public:
 friend std::ostream& operator<<(std::ostream&, const Fund&);
 
+protected:
+    void reset();
+
 private:
     std::string _name;
+    std::string _no;
     std::set<DailyRecord> _records;
 };
 
-
 #endif /* _FUND_H_ */
-
-
 

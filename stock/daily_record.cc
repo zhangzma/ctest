@@ -2,7 +2,7 @@
  *
  *   Copyright (c) 2016 www.bjfz.cc. All rights reserved.
  *
- * @file Record.cc
+ * @file daily_record.cc
  *
  * Abstract
  *
@@ -76,21 +76,13 @@ std::ostream& operator<<(std::ostream& os, const DailyRecord& dr)
 {
     os << dr._date << "\t";
     char buff[64];
-    sprintf(buff, "%.02f\t%.02f\t%.02f\t%.02f",
+    sprintf(buff, "%7.2f\t%7.2f\t%7.2f\t%7.2f",
             dr._price_opening,
             dr._price_highest,
             dr._price_lowest,
             dr._price_ending);
     os << buff;
 
-    // os << dr._date << ":\t";
-    // os.ioflags(std::ios::fixed);
-    // os << showpoint;
-    // os.precision(3);
-    // os << dr._price_opening << "\t"
-    //    << dr._price_highest << "\t"
-    //    << dr._price_lowest << "\t"
-    //    << dr._price_ending << "\n";
     return os;
 }
 

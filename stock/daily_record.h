@@ -2,11 +2,11 @@
  *
  *   Copyright (c) 2016 www.bjfz.cc. All rights reserved.
  *
- * @file Record.h
+ * @file daily_record.h
  *
- * FundRecord
+ * DailyRecord类
  *
- * 
+ * 每日交易记录
  *
  * @author Zhanghb zhaingbo@foxmail.com
  *
@@ -32,7 +32,6 @@ public:
 
 public:
     bool operator<(const DailyRecord &) const;
-
 friend std::ostream& operator<<(std::ostream&, const DailyRecord& dr);
 
 private:
