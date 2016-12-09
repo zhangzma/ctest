@@ -11,11 +11,8 @@
 
 int main(int argc, char *argv[])
 {
-    Shape *ps;
-    Shape *pc = new Circle;
-    Shape *pr = new Rectangle;
-
-    pr->draw();
+    for (int i = 0; i < 10; i++) {
+    }
 
     return 0;
 }
