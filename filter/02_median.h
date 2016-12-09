@@ -17,7 +17,7 @@
  *C、缺点：
  *   对流量、速度等快速变化的参数不宜
  *
- * @author Author zhanghaibo@bjfz.cc
+ * @author ZhangHb zhanghaibo@foxmail.com
  *
  **************************************************************************/
 #ifndef _02_MEDIAN_H_
@@ -29,7 +29,6 @@ typedef float (*pf)();
 
 
 namespace filter {
-
 #ifndef MEDIAN_MAX
 #define MEDIAN_MAX	9
 #endif /* MEDIAN_MAX */

@@ -1,4 +1,15 @@
-
+/**************************************************************************
+ *
+ *   Copyright (c) 2016 www.bjfz.cc. All rights reserved.
+ *
+ * @file main.cc
+ *
+ * 11种滤波算法测试，滤波算法实现参见filter.h
+ *
+ * @author ZhangHb zhaingbo@foxmail.com
+ *
+ *************************************************************************/
+#define _MAIN_C_
 #include "filter.h"
 #include <iostream>
 #include <cstdlib>
@@ -15,13 +26,12 @@ int main(int argc, char *argv[])
 	pf new_data = get_data;
 
 	for (int i=0; i<100; i++) {
-		data = filter::median(new_data, 1.0f);
-
-		std::cout << data << std::endl;
-
-		// if ((i+1) % 5 == 0) {
-		// 	std::cout << std::endl;
-		// }
+		// data = filter::median(new_data, 1.0f);
+        data = new_data();
+		std::cout << data << "\n";
+        // if ((i+1) % 10 == 0) {
+        //     std::cout << std::endl;
+        // }
 	}
 
 	std::cout << std::endl;
@@ -31,11 +41,13 @@ int main(int argc, char *argv[])
 
 float get_data()
 {
-	static float data = rand() % 1000;
+	static float data = 1000;
 	float coefficient = (rand() % 100) / 100.0 - 0.5;
-	data += coefficient*data/100.0;
 
-	// return coefficient;
+    std::cout << data << "\t"
+              << coefficient << "\t";
+
+	data += coefficient*data/10.0;
 	return data;
 }
 

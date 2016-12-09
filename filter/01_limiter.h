@@ -18,7 +18,7 @@
  *	- 无法抑制那种周期性的干扰
  *	- 平滑度差
  *
- * @author Author email
+ * @author ZhangHb zhanghaibo@foxmail.com
  *
  **************************************************************************/
 /* #include "limiter.h" */
