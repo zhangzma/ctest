@@ -28,8 +28,8 @@ int main(int argc, char *argv[])
     }
 
     char *pstr = argv[1];
-    uint8_t pl[50]={'\0'};
-    uint8_t en[50]={'\0'};
+    uint8_t pl[50] = {'\0'};
+    uint8_t en[50] = {'\0'};
     uint16_t len = strlen(argv[1]);
     memcpy(pl, pstr, len);
     // printf("pl = %s\n", pl);
