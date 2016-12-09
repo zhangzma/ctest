@@ -32,21 +32,9 @@ typedef struct _tm_t
     uint8_t  sec;
 }tm_t, *ptm_t;
 
-std::ostream& operator<<(std::ostream& s, const tm_t& tm)
-{
-    std::cout << (uint16_t)tm.year << "/" 
-              << (uint16_t)tm.month << "/" 
-              << (uint16_t)tm.day << " "
-              << (uint16_t)tm.hour << ":" 
-              << (uint16_t)tm.min << ":" 
-              << (uint16_t)tm.sec << std::endl;
-    return s;
-}
-
-bool MyClass::operator==(const MyClass &other) const {
-    
-}
-
+void print();
+extern void print_info();
+std::ostream& operator<<(std::ostream& s, const tm_t& tm);
 
 #endif /* _TM_H_ */
 

@@ -1,7 +1,7 @@
 
 
 CC=g++
-obj=main.o
+obj=main.o tm.o
 
 tm:$(obj)
 	$(CC) -o tm $(obj)

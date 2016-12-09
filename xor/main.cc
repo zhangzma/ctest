@@ -9,7 +9,7 @@
  *
  *************************************************************************/
 #include <iostream>
-// using namespace std;
+using namespace std;
 
 void xor_test()
 {
@@ -27,6 +27,7 @@ void iic_write_byte(unsigned char dat)
 
 int main(int argc, char *argv[])
 {
-    iic_write_byte(0xE8);
+    // iic_write_byte(0xE8);
+    std::cout << (2^6) << std::endl;
     return 0;
 }
