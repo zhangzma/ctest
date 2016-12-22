@@ -22,6 +22,7 @@
 #include <fstream>
 using namespace std;
 
+void test_date();
 void test_gardener();
 void test_fund();
 
@@ -29,9 +30,9 @@ void test_fund();
 int main(int argc, char *argv[])
 {
     // test_gardener();
-    // test_date();
+    test_date();
     // test_daily_record();
-    test_fund();
+    // test_fund();
 
     return 0;
 }
@@ -56,16 +57,17 @@ void test_gardener()
 void test_date()
 {
     std::cout << "========== Class Date' tests ==========" << std::endl;
-    Date date(2016, 11, 16);
-    std::cout << date << std::endl;
+    Date d1(2016, 11, 16);
+    // std::cout << date << std::endl;
 
-    Date date2(2016, 11, 17);
+    Date d2(2016, 11, 18);
+    // std::cout << (date < date2) << std::endl;
 
-    std::cout << (date < date2) << std::endl;
-
-    Date d3(date2);
+    Date d3 = d2;
+    d3 += 0;
+    
+    // std::cout << (d2 - d1) << std::endl;
     std::cout << d3 << std::endl;
-
     std::cout << "========== End of tests ==========" << std::endl;
 }
 
@@ -90,18 +92,19 @@ void test_fund()
     std::cout << "========== Fund Date' tests ==========" << std::endl;
     Fund f("300");
 
-    Date date(2016, 11, 16);
-    DailyRecord dr(date);
-    dr.set_price(15.0, 15.9, 14.5, 15.2);
-    f.add_record(dr);
+    // Date date(2016, 11, 16);
+    // DailyRecord dr(date);
+    // dr.set_price(15.0, 15.9, 14.5, 15.2);
+    // f.add_record(dr);
 
-    Date date2(2016, 11, 17);
-    DailyRecord dr2(date2);
-    dr2.set_price(13.0, 17.9, 14.5, 14.2);
-    f.add_record(dr2);
-    std::cout << f << std::endl;
+    // Date date2(2016, 11, 17);
+    // DailyRecord dr2(date2);
+    // dr2.set_price(13.0, 17.9, 14.5, 14.2);
+    // f.add_record(dr2);
+    // std::cout << f << std::endl;
 
     f.read_file("2005-2012.dat");
+    std::cout << f << std::endl;
     std::cout << "f.size() = " << f.size() << std::endl;
     // f.read_file("data.txt");
 }

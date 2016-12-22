@@ -15,7 +15,7 @@
 #include "daily_record.h"
 #include <cstdio>
 
-DailyRecord::DailyRecord(const Date& date)
+DailyRecord::DailyRecord(const Date & date)
     : _date(date),
       _price_opening(0.0),
       _price_highest(0.0),
@@ -37,6 +37,34 @@ void DailyRecord::set_price(float op, float hp, float lp, float ep)
     _price_highest = hp;
     _price_lowest  = lp;
     _price_ending  = ep;
+}
+
+float DailyRecord::get_price(PRICE_TYPE type)
+{
+    float price;
+
+    switch (type) {
+    case P_OPENING:
+        price = get_opening_price();
+        break;
+
+    case P_LOWEST:
+        price = get_lowest_price();
+        break;
+
+    case P_HIGHEST:
+        price = get_highest_price();
+        break;
+
+    case P_AVERAGE:
+        price = get_average_price();
+        break;
+
+    // case P_ENDING:
+    default:
+        price = get_ending_price();
+        break;
+    }
 }
 
 float DailyRecord::get_opening_price()
@@ -67,12 +95,12 @@ float DailyRecord::get_average_price()
 /**************************************************************************
  **                    Overload Operator Function
  *************************************************************************/
-bool DailyRecord::operator<(const DailyRecord &rhs) const
+bool DailyRecord::operator<(const DailyRecord & rhs) const
 {
     return (_date < rhs._date);
 }
 
-std::ostream& operator<<(std::ostream& os, const DailyRecord& dr)
+std::ostream & operator<<(std::ostream & os, const DailyRecord & dr)
 {
     os << dr._date << "\t";
     char buff[64];

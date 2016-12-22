@@ -16,6 +16,8 @@
 #include "gardener.h"
 #include <fstream>
 #include <cstdio>
+#include <cstdlib>
+
 #include <string.h>
 using std::set;
 using std::string;
@@ -62,6 +64,47 @@ void Fund::read_file(const char* fn)
         // std::cout << *this << std::endl;
     }
 }
+
+float Fund::average(const Date &d1, const Date &d2, DailyRecord::PRICE_TYPE type)
+{
+    Date     date = d1 < d2 ? d1 : d2;
+    uint32_t day  = abs(d2 - d1);
+    
+    return average(date, day, type);
+}
+
+
+float Fund::average(const Date &d1, uint32_t day, DailyRecord::PRICE_TYPE type)
+{
+    float       total(0.0);
+    uint32_t    count(0);
+    Date        date;
+    DailyRecord dr(date);
+
+    for (uint32_t i = 0; i < day; i++) {
+        if (get(date, dr)) {
+            total += dr.get_price(type);
+            count += 1;
+        }
+        date += 1;
+    }
+
+    return (total / count);
+}
+
+bool Fund::get(const Date &date, DailyRecord& dr)
+{
+    std::set<DailyRecord>::iterator beg = _records.begin();
+    while (beg != _records.end()) {
+        if ((*beg)._date == date) {
+            dr = *beg;
+            return true;
+        }
+    }
+    
+    return false;
+}
+
 
 uint32_t Fund::size() const
 {

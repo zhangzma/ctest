@@ -23,8 +23,12 @@ class Fund
 public:
     Fund(const std::string &name);
     virtual ~Fund();
-    void add_record(const DailyRecord &r);
-    void read_file(const char* fn);
+
+    void  add_record(const DailyRecord &r);
+    void  read_file(const char* fn);
+    float average(const Date &d1, const Date &de, DailyRecord::PRICE_TYPE type = DailyRecord::P_ENDING);
+    float average(const Date &d1, uint32_t day, DailyRecord::PRICE_TYPE type = DailyRecord::P_ENDING);
+    bool get(const Date &date, DailyRecord& dr);
     uint32_t size() const;
 
 public:

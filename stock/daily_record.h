@@ -19,20 +19,32 @@
 class DailyRecord
 {
 public:
+    enum PRICE_TYPE{
+        P_OPENING,
+        P_ENDING,
+        P_LOWEST,
+        P_HIGHEST,
+        P_AVERAGE
+    };
+
+public:
     DailyRecord(const Date& date);
     virtual ~DailyRecord();
 
-    void set_price(float op, float hp, float lp, float ep);
-
+    void  set_price(float op, float hp, float lp, float ep);
+    float get_price(PRICE_TYPE type);
+    
+protected:
     float get_opening_price();
     float get_ending_price();
     float get_lowest_price();
     float get_highest_price();
     float get_average_price();
-
+    
 public:
     bool operator<(const DailyRecord &) const;
 friend std::ostream& operator<<(std::ostream&, const DailyRecord& dr);
+friend class Fund;
 
 private:
     float _price_opening;
