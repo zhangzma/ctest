@@ -5,14 +5,15 @@
 #include <iostream>
 using namespace std;
 
-enum SYS_DEBUG{
+
+typedef enum _SYS_DEBUG{
 	DEBUG_NON,
 	DEBUG_INFO,
 	DEBUG_WARN
-};
+}SYS_DEBUG;
 
 /* system debug level. */
-enum SYS_DEBUG_LVL{
+typedef enum _SYS_DEBUG_LVL{
 	SYS_DEBUG_LVL_NON = 0,		/* Do not output any debug info. */
 	SYS_DEBUG_LVL_INFO,			/* Output the info+ debug message. */
 	SYS_DEBUG_LVL_WARN,			/* Output the warn+ debug message. */
@@ -20,7 +21,24 @@ enum SYS_DEBUG_LVL{
 	SYS_DEBUG_LVL_CRITICAL,		/* Output the critical+ debug message. */
 	SYS_DEBUG_LVL_MAX = 0x7,	/*  */
 	SYS_DEBUG_LVL_ALL = 0x8	/* Output ALL the debug message. */
-};
+}SYS_DEBUG_LVL;
+
+
+void dbg_test();
+void enum_test();
+
+int main(int argc, char *argv[])
+{
+    enum_test();
+    
+    return 0;
+}
+
+
+void dbg_init(SYS_DEBUG_LVL level)
+{
+    std::cout << level << std::endl;
+}
 
 bool dbg_need_output(uint32_t curr, uint32_t limit)
 {
@@ -55,10 +73,13 @@ bool dbg_out_critical(uint32_t curr)
 	return dbg_need_output(curr, SYS_DEBUG_LVL_CRITICAL);
 }
 
-int main(int argc, char *argv[])
+void dbg_test()
 {
-	int ival = 0;
-	enum SYS_DEBUG debug;
+    int ival = 0;
+
+    SYS_DEBUG debug = DEBUG_WARN;
+    uint16_t  is    = debug;
+
 
 	for (int i = 0; i < DEBUG_WARN+2; i++) {
 		debug = (SYS_DEBUG)ival++;
@@ -102,8 +123,10 @@ int main(int argc, char *argv[])
 		}
 	}
 
-
-    return 0;
+    std::cout << "is = " << is << std::endl;
 }
 
-
+void enum_test()
+{
+    dbg_init((SYS_DEBUG_LVL)(SYS_DEBUG_LVL_NON | SYS_DEBUG_LVL_INFO));
+}
