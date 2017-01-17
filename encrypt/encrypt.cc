@@ -22,7 +22,7 @@ static uint8_t  convert(uint8_t ch);
 static char sn[100]  = {'\0'};
 static int  count = 0;
 
-void encrypt_epri(uint8_t* in, uint16_t in_len, uint8_t* out, uint16_t& out_len)
+void encrypt_epri(const uint8_t* in, uint16_t in_len, uint8_t* out, uint16_t& out_len)
 {
     init_sn(0x35);
     out_len = 0;
