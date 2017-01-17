@@ -1,0 +1,6 @@
+Exception: STATUS_ACCESS_VIOLATION at eip=6115E257
+eax=0028CCA2 ebx=3FF00000 ecx=00000000 edx=611CD07E esi=00000001 edi=611CD07E
+ebp=00000001 esp=0028CAD0 program=f:\workspace\ctest\pid\pid.exe, pid 4420, thread main
+cs=0023 ds=002B es=002B fs=0053 gs=002B ss=002B
+Stack trace:
+Frame     Function  Args
