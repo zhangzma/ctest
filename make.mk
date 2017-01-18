@@ -9,8 +9,8 @@ all:$(TARGET)
 $(TARGET):$(OBJ)
 	$(CXX) $(OBJ) -o $(TARGET)
 
-%.o:%.cc
+%.o:%.cpp
 	$(CXX) $(CXX_FLAGS) -c $< -o $@
 
 clean:
-	-rm -rf $(OBJ) *.exe
+	-rm -rf $(OBJ) *.exe *.o

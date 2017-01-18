@@ -48,8 +48,6 @@ void test_trace()
     TRACE("[dbg] a=%d, b=%d, c=%d\n", a, b, c);
 }
 
-
-
 int test_sprintf()
 {
     sum("The sum of the list is:", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 0);

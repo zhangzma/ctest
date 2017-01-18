@@ -1,6 +1,8 @@
 
+# 目标文件
 TARGET = mr
-OBJ    = main.o mode_report.o serial_manager.o
-
+# 对象文件
+OBJ    = main.o
+       
 include ../make.mk
 
