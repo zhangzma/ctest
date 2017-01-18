@@ -10,14 +10,15 @@ bool read_ploygon_header(const char* pbuf, int &count);
 int main(int argc, char *argv[])
 {
     FILE *pFile;
-    /* pFile = fopen("1.txt", "w"); // 文件打开方式 如果原来有内容也会销毁//向文件写数据 */
-    /* fwrite ("hello", //要输入的文字 */
-    /*         1,//文字每一项的大小 以为这里是字符型的 就设置为1 如果是汉字就设置为4 */
-    /*         5,// 我们也可以直接写5 */
-    /*         pFile //我们刚刚获得到的地址 */
-    /*         ); */
-    /* fclose(pFile); //告诉系统我们文件写完了数据更新，但是我们要要重新打开才能在写 */
-    /* fflush(pFile); //数据刷新 数据立即更新 */
+    pFile = fopen("1.txt", "w"); // 文件打开方式 如果原来有内容也会销毁//向文件写数据
+    fwrite ("hello", //要输入的文字
+            1,//文字每一项的大小 以为这里是字符型的 就设置为1 如果是汉字就设置为4
+            5,// 我们也可以直接写5
+            pFile //我们刚刚获得到的地址
+            );
+    fclose(pFile); //告诉系统我们文件写完了数据更新，但是我们要要重新打开才能在写
+    fflush(pFile); //数据刷新 数据立即更新
+    return -1;
 
     /* 对文件读取操作 */
     pFile     = fopen("1.txt", "r"); //获取文件的指针
@@ -37,32 +38,6 @@ int main(int argc, char *argv[])
 
     fclose(pFile); // 关闭文件    
     return 0;
-}
-
-void deal_chars(const char *pbuf, int len)
-{
-    int start(0), end(0);
-    char str[30] = {0};
-
-    int count = 0;
-    
-    for (end = start; end < len; end++) {
-        if (pbuf[end] == '\n') {
-            strncpy(str, pbuf+start, end-start);
-            printf("%s\n", str);
-            if (is_comment_line(str)) {
-                
-            } else if (is_header_line(str)) {
-                bool nfz = read_ploygon_header(str, count);
-                printf("is %s nfz\n", nfz ? "" : "NOT");
-            } else {
-                read_a_point(str, x, y);
-                
-            }
-
-            start = end+1;
-        }
-    }
 }
 
 bool is_comment_line(const char* pbuf)
@@ -95,4 +70,30 @@ bool read_ploygon_header(const char* pbuf, int &count)
 
     sscanf(pbuf, "%c:%d", &nfz, &count);
     return (nfz == 'Y' || nfz == 'y');
+}
+
+void deal_chars(const char *pbuf, int len)
+{
+    int start(0), end(0);
+    char str[30] = {0};
+    double x, y;
+
+    int count = 0;
+    
+    for (end = start; end < len; end++) {
+        if (pbuf[end] == '\n') {
+            strncpy(str, pbuf+start, end-start);
+            printf("%s\n", str);
+            if (is_comment_line(str)) {
+                
+            } else if (is_header_line(str)) {
+                bool nfz = read_ploygon_header(str, count);
+                printf("is %s nfz\n", nfz ? "" : "NOT");
+            } else {
+                read_a_point(str, x, y);
+            }
+
+            start = end+1;
+        }
+    }
 }
